@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Textbeziehungs-Audit · Alma Mater</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<!--
+  ═══════════════════════════════════════════════════════════════
+  ALMA MATER · TEXTBEZIEHUNGS-AUDIT
+  Dr. Wiebke Vogelaar · schreibcoaching-fuer-mamas.de
+  ═══════════════════════════════════════════════════════════════
+
+  EINBETTUNG IN LEARNWORLDS:
+  1. Diese Datei auf GitHub Pages oder ähnlichem hosten
+  2. In LearnWorlds: Add Block → HTML/Embed → iframe einfügen:
+     <iframe src="DEINE-URL" width="100%" height="800px"
+       style="border:none;border-radius:12px;" allowfullscreen></iframe>
+
+  API-KEY:
+  Zeile mit "YOUR_ANTHROPIC_API_KEY" → durch deinen echten Key ersetzen.
+  Hinweis: Der Key ist im Quellcode sichtbar. Nur für kontrollierten
+  Einsatz mit bekannter Community verwenden.
+  ═══════════════════════════════════════════════════════════════
+-->
+
+<style>
+  :root {
+    --purple: #472c4c;
+    --purple-light: #6b4172;
+    --purple-pale: #f5eef7;
+    --green: #254b34;
+    --green-pale: #eaf2ed;
+    --gold: #d1b400;
+    --gold-pale: #fdf8dc;
+    --gray: #f2f5f7;
+    --text: #2d2d2d;
+    --muted: #7a7a7a;
+    --white: #ffffff;
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--gray);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px 80px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 32px rgba(71,44,76,0.12);
+    width: 100%;
+    max-width: 660px;
+    overflow: hidden;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Header ── */
+  .hdr {
+    padding: 28px 32px 24px;
+    background: var(--purple);
+    transition: background 0.3s;
+  }
+  .hdr.green { background: var(--green); }
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 9px;
+  }
+  .section-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 11px;
+    letter-spacing: 1px;
+  }
+  .hdr h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.35;
+  }
+  .hdr p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+
+  /* ── Progress ── */
+  .prog-wrap { height: 3px; background: rgba(255,255,255,0.15); }
+  .prog-fill  { height: 100%; background: var(--gold); transition: width 0.4s ease; }
+
+  /* ── Body ── */
+  .body { padding: 28px 32px 26px; }
+  .hint {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  /* ── Navigation ── */
+  .nav { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; }
+  .btn {
+    background: var(--purple);
+    color: var(--white);
+    border: none;
+    padding: 13px 28px;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    letter-spacing: 0.3px;
+  }
+  .btn:hover:not(:disabled) { background: var(--purple-light); transform: translateY(-1px); }
+  .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .btn-ghost {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 13px;
+    cursor: pointer;
+    padding: 8px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .btn-ghost:hover { color: var(--purple); }
+
+  /* ── Gefühl Scale ── */
+  .gefuehl-row { display: flex; gap: 8px; justify-content: center; margin: 8px 0; }
+  .g-btn {
+    flex: 1;
+    padding: 12px 4px;
+    border-radius: 12px;
+    border: 2px solid #e8e0ea;
+    cursor: pointer;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 22px;
+    transition: all 0.18s;
+  }
+  .g-btn span { font-size: 11px; color: var(--muted); font-family: 'Poppins', sans-serif; }
+  .g-btn:hover, .g-btn.sel {
+    border-color: var(--purple);
+    background: var(--purple-pale);
+  }
+  .g-btn.sel span { color: var(--purple); font-weight: 600; }
+
+  /* ── Number Scale ── */
+  .scale-row { display: flex; gap: 6px; justify-content: space-between; margin-bottom: 7px; }
+  .sc-btn {
+    flex: 1;
+    height: 44px;
+    border-radius: 9px;
+    border: 2px solid #e8e0ea;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    background: var(--white);
+    color: var(--muted);
+    transition: all 0.18s;
+  }
+  .sc-btn:hover, .sc-btn.sel {
+    border-color: var(--purple);
+    color: var(--purple);
+  }
+  .sc-btn.sel { background: var(--purple); color: var(--white); }
+  .scale-labs { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
+
+  /* ── Radio Cards ── */
+  .radio-grid { display: flex; flex-direction: column; gap: 9px; }
+  .radio-grid.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .r-card {
+    border: 2px solid #e8e0ea;
+    border-radius: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.4;
+    transition: all 0.18s;
+    background: var(--white);
+  }
+  .r-card:hover, .r-card.sel { border-color: var(--purple); background: var(--purple-pale); }
+  .dot {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s;
+  }
+  .r-card.sel .dot { border-color: var(--purple); background: var(--purple); }
+  .dot-inner { width: 6px; height: 6px; border-radius: 50%; background: white; }
+
+  /* ── Checkboxes ── */
+  .cb-grid { display: flex; flex-direction: column; gap: 8px; }
+  .cb-card {
+    border: 2px solid #e8e0ea;
+    border-radius: 10px;
+    padding: 11px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 14px;
+    color: var(--text);
+    transition: all 0.18s;
+    background: var(--white);
+  }
+  .cb-card:hover, .cb-card.sel { border-color: var(--purple); background: var(--purple-pale); }
+  .cb-box {
+    width: 17px;
+    height: 17px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+  }
+  .cb-card.sel .cb-box { border-color: var(--purple); background: var(--purple); }
+  .multi-note { font-size: 11px; color: var(--gold); margin-top: 5px; text-align: right; font-weight: 600; }
+
+  /* ── Textarea ── */
+  .ta {
+    width: 100%;
+    border: 2px solid #e8e0ea;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    resize: none;
+    outline: none;
+    transition: border 0.18s;
+    line-height: 1.6;
+  }
+  .ta:focus { border-color: var(--purple); }
+  .char { text-align: right; font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  /* ── Deadline ── */
+  .dl-wrap { display: flex; flex-direction: column; gap: 14px; }
+  .dl-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .dl-input {
+    border: 2px solid #e8e0ea;
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+  }
+  .dl-input:focus { border-color: var(--purple); }
+  .dl-feel { font-size: 14px; font-weight: 600; color: var(--purple); margin-bottom: 8px; }
+
+  /* ── Fields ── */
+  .field-lbl { font-size: 12px; color: var(--muted); margin-bottom: 5px; display: block; }
+  .field {
+    border: 2px solid #e8e0ea;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+    margin-bottom: 12px;
+    transition: border 0.18s;
+  }
+  .field:focus { border-color: var(--purple); }
+
+  /* ── Welcome ── */
+  .welcome-body { padding: 28px 32px; }
+  .welcome-body p { font-size: 15px; line-height: 1.8; margin-bottom: 14px; }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--gold-pale);
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-size: 13px;
+    color: #7a6200;
+    margin-bottom: 22px;
+  }
+
+  /* ── Loading ── */
+  .loading-body { padding: 56px 32px; text-align: center; }
+  .spinner {
+    width: 42px;
+    height: 42px;
+    border: 3px solid #e8e0ea;
+    border-top-color: var(--purple);
+    border-radius: 50%;
+    animation: spin 0.85s linear infinite;
+    margin: 0 auto 20px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-body > p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* ── Results ── */
+  .res-body { padding: 26px 32px; }
+  .mood-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--green-pale);
+    border-radius: 10px;
+    padding: 13px 17px;
+    margin-bottom: 20px;
+  }
+  .mood-item { text-align: center; flex: 1; }
+  .mood-emoji { font-size: 24px; }
+  .mood-lbl { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .mood-arrow { font-size: 18px; color: var(--green); }
+
+  .res-section { margin-bottom: 20px; }
+  .res-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 7px;
+  }
+  .res-section p { font-size: 14px; line-height: 1.8; color: var(--text); }
+  .divider { height: 1px; background: #f0eaf2; margin: 18px 0; }
+  .tag {
+    display: inline-block;
+    background: var(--purple-pale);
+    color: var(--purple);
+    border-radius: 6px;
+    padding: 3px 11px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 7px;
+  }
+
+  .dw-box {
+    background: var(--green-pale);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 8px;
+  }
+  .dw-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+  .dw-box p { font-size: 13px; line-height: 1.7; }
+  .dw-steps {
+    font-size: 13px;
+    line-height: 1.8;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(37,75,52,0.2);
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .badge.green { background: var(--green); color: white; }
+  .badge.gold  { background: var(--gold); color: #5a4a00; }
+
+  .mikro-box {
+    border-left: 3px solid var(--gold);
+    padding: 10px 14px;
+    background: var(--gold-pale);
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 4px;
+  }
+
+  .product-box {
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    padding: 18px 20px;
+    background: var(--gold-pale);
+    margin-bottom: 12px;
+  }
+  .pname {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--green);
+    margin-bottom: 7px;
+  }
+  .product-box p { font-size: 13px; line-height: 1.65; margin-bottom: 13px; }
+  .product-btn {
+    display: inline-block;
+    background: var(--purple);
+    color: white;
+    padding: 11px 20px;
+    border-radius: 9px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    letter-spacing: 0.3px;
+  }
+
+  .hood-box {
+    background: var(--green-pale);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .hood-box .hood-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+  .hood-box p { font-size: 13px; line-height: 1.65; margin-bottom: 12px; }
+
+  .footer-note {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 22px;
+    line-height: 1.7;
+  }
+  .footer-note a { color: var(--muted); }
+
+  .err {
+    background: #fff0f0;
+    border: 2px solid #ffcccc;
+    border-radius: 10px;
+    padding: 13px;
+    font-size: 13px;
+    color: #c00;
+    margin-top: 13px;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="card" id="card"></div>
+
+<script>
+// ─── CONFIG ──────────────────────────────────────────────────────
+// Key wird aus dem URL-Parameter ?k= gelesen
+// Beispiel iframe-URL: .../textbeziehungs-audit.html?k=sk-ant-api03-...
+// Der Key steht NUR in deinem LearnWorlds-Embed-Code, nie in dieser Datei.
+const API_KEY = new URLSearchParams(window.location.search).get("k") || "";
+
+// ─── PRODUCTS ────────────────────────────────────────────────────
+const PRODUCTS = {
+  dwe: {
+    name: "Deep Work Essentials",
+    beschreibung: "Der Kurs, der dich von \"ich weiß, was Deep Work ist\" zu \"ich mache es wirklich\" bringt — mit einem care-sensiblen System, das zu deinem Leben passt.",
+    cta: "Zum Deep Work Essentials Kurs →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/course/deep-work-essentials",
+  },
+  textbeziehung: {
+    name: "Mini-Kurs: Textbeziehung",
+    beschreibung: "Du lernst, wie du wieder eine lebendige, vertrauensvolle Verbindung zu deinem Schreib-Ich aufbaust — auch nach langen Pausen, Erschöpfung oder Muttertät.",
+    cta: "Zum Mini-Kurs Textbeziehung →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/minikurs-textbeziehung",
+  },
+  mental_load: {
+    name: "Mini-Kurs: Mental & Emotional Load",
+    beschreibung: "Du verstehst, warum dein Kopf nie aufhört — und bekommst konkrete Strategien, um den mentalen Dauerbetrieb zu unterbrechen.",
+    cta: "Zum Mini-Kurs Mental & Emotional Load →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/minikurs-mental-emotional-load",
+  },
+  muttertaet: {
+    name: "Mini-Kurs: Muttertät verstehen",
+    beschreibung: "Du bekommst einen feministischen Rahmen für das, was mit dir passiert ist — und verstehst, warum Wissenschaft und Muttertät so oft in Konflikt geraten.",
+    cta: "Zum Mini-Kurs Muttertät →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/minikurs-muttertaet",
+  },
+  big_rocks: {
+    name: "Mini-Kurs: Planen mit Big Rocks",
+    beschreibung: "Du lernst, das Wichtigste wirklich zuerst zu planen — und hörst auf, Schreiben auf den Moment zu verschieben, in dem alle anderen Aufgaben erledigt sind.",
+    cta: "Zum Mini-Kurs Big Rocks →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/minikurs-big-rocks",
+  },
+  zyklus: {
+    name: "Mini-Kurs: Zyklusbewusstes Schreiben",
+    beschreibung: "Du lernst, deinen Zyklus als Ressource zu nutzen — und planst Schreib- und Ruhephasen so, dass sie zu deiner körperlichen Energie passen.",
+    cta: "Zum Mini-Kurs Zyklusbewusstes Schreiben →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/minikurs-zyklus",
+  },
+  alma_hood: {
+    name: "Alma-HOOD — Inner Circle Community",
+    beschreibung: "Coworking-Räume mit synchronisierten Deep Work Timern, Deep Work Essentials inklusive, Workshop-Bibliothek und offene Sprechstunden. Der Ort wo Schreiben nicht alleine passiert.",
+    cta: "Zur Alma-HOOD →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/alma-hood-coworking",
+  },
+  collection: {
+    name: "Die Minis-Collection",
+    beschreibung: "Deine Situation hat viele Facetten — die gebündelte Collection macht am meisten Sinn. Alle Ressourcen von Textbeziehung bis Mental Load.",
+    cta: "Zur Minis-Collection →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/mini-kurse",
+  },
+};
+
+// ─── QUESTIONS ───────────────────────────────────────────────────
+const GEFUEHL = [
+  { v: 1, e: "😔", l: "Nicht gut" },
+  { v: 2, e: "😐", l: "So lala" },
+  { v: 3, e: "🙂", l: "Okay" },
+  { v: 4, e: "😊", l: "Gut" },
+  { v: 5, e: "🌟", l: "Sehr gut" },
+];
+
+const SECTIONS = [
+  { label: "Einstieg", color: "#472c4c" },
+  { label: "Dein Schreibprojekt", color: "#472c4c" },
+  { label: "Deine Textbeziehung", color: "#472c4c" },
+  { label: "Deine Care-Situation", color: "#254b34" },
+  { label: "Deep Work & Fokus", color: "#254b34" },
+  { label: "Abschluss", color: "#472c4c" },
+];
+
+const Q = [
+  { id:"vorher", s:0, num:"01", text:"Wie geht es dir gerade?", hint:"Gib uns einen ehrlichen Einstieg.", type:"gefuehl" },
+  { id:"projekt", s:1, num:"02", text:"Woran arbeitest du gerade — und in welcher Phase bist du?", hint:"Projekttyp, Thema, wo du gerade wirklich stehst.", type:"ta", rows:3, max:400, ph:"z.B. \"Dritte Jahr Dissertation, gerade an Kapitel 3 — eigentlich müsste ich weiter sein...\"" },
+  { id:"rahmen", s:1, num:"03", text:"Ist dein Projekt in einen institutionellen Rahmen eingebunden?", hint:"GraKo, Forschungsgruppe, Ko-Autorschaft, Drittmittelprojekt...", type:"radio", cols:2, opts:[
+    { v:"ja_grakogruppe", l:"Ja — GraKo oder Forschungsgruppe" },
+    { v:"ja_koautorin", l:"Ja — Ko-Autorschaft oder Projekt" },
+    { v:"nein_solo", l:"Nein — ich arbeite solo" },
+    { v:"nein_freie", l:"Nein — freie Wissenschaftlerin" },
+  ]},
+  { id:"deadline", s:1, num:"04", text:"Hast du eine Deadline — und wie fühlst du dich damit?", hint:"Datum optional. Das Gefühl ist das Wichtigere.", type:"deadline" },
+  { id:"warum_jetzt", s:1, num:"05", text:"Warum hast du dich gerade jetzt für diesen Audit entschieden?", hint:"Was hat den Ausschlag gegeben?", type:"ta", rows:3, max:300, ph:"Was hat dich hierher gebracht?" },
+  { id:"tb_skala", s:2, num:"06", text:"Als wie stark schätzt du deine aktuelle Textbeziehung ein?", hint:"Die Verbindung zu deinem Schreib-Ich — zu deinen Ideen, deiner wissenschaftlichen Stimme.", type:"scale", min:1, max:5, labs:["Sehr schwach","Sehr stark"] },
+  { id:"tb_beschreibung", s:2, num:"07", text:"Wie fühlt sich deine Textbeziehung gerade an?", hint:"Ein Bild, ein Satz, ein Gefühl. Kein perfekter Text nötig.", type:"ta", rows:4, max:400, ph:"z.B. \"Wir haben uns ein bisschen fremd geworden\"" },
+  { id:"tb_wunsch", s:2, num:"08", text:"Wie möchtest du, dass sie sich anfühlt?", hint:"Wenn du dir das frei wünschen könntest.", type:"ta", rows:3, max:300, ph:"Dein Wunschbild der Textbeziehung..." },
+  { id:"tb_veraenderung", s:2, num:"09", text:"Was würde sich in deinem Leben ändern, wenn deine Textbeziehung gesund wäre?", hint:"Konkret — was wäre anders?", type:"ta", rows:3, max:300, ph:"Was wäre möglich?" },
+  { id:"care_kinder", s:3, num:"10", text:"Wie viele Kinder hast du — und wie alt sind sie?", hint:"Grob reicht.", type:"ta", rows:2, max:300, ph:"z.B. \"Zwei Kinder, 2 und 5 Jahre...\"" },
+  { id:"care_aufgaben", s:3, num:"11", text:"Welche Care-Aufgaben übernimmst überwiegend du?", hint:"Denk auch an die kognitiven und emotionalen: Arzttermine, Geburtstagsplanung, die Stimmung des Haushalts regulieren...", type:"ta", rows:4, max:400, ph:"Aktive, kognitive und emotionale Aufgaben..." },
+  { id:"care_energie", s:3, num:"12", text:"Welche Care-Momente kosten dich am meisten Energie — und welche geben dir welche zurück?", hint:"Beides ist wichtig.", type:"ta", rows:4, max:400, ph:"Kostet: ... / Gibt: ..." },
+  { id:"care_rueckzug", s:3, num:"13", text:"Hast du regelmäßig wirklich ungestörte Zeit nur für dich?", hint:"Nicht Schreibzeit — Zeit ohne Verfügbarkeitserwartung.", type:"radio", opts:[
+    { v:"ja_regelmaessig", l:"Ja, regelmäßig und verlässlich" },
+    { v:"manchmal", l:"Manchmal — aber nicht verlässlich" },
+    { v:"selten", l:"Selten — meistens bin ich \"gleich wieder da\"" },
+    { v:"kaum", l:"Kaum oder nie" },
+  ]},
+  { id:"abgrenzung", s:3, num:"14", text:"Wovon möchtest du dich mehr abgrenzen?", hint:"Von Menschen, Erwartungen, Aufgaben, Verfügbarkeiten — was auch immer.", type:"ta", rows:3, max:300, ph:"Was zieht zu viel von deiner Energie?" },
+  { id:"faktoren", s:3, num:"15", text:"Welche dieser Faktoren spürst du am stärksten in deinem Alltag?", hint:"Wähle die drei, die am meisten zutreffen.", type:"multi3", opts:[
+    { v:"erschoepfung", l:"Erschöpfung" },
+    { v:"fremdbestimmung", l:"Fremdbestimmung" },
+    { v:"verfuegbarkeit", l:"Ständige Verfügbarkeit" },
+    { v:"unsicherheit", l:"Unsicherheit" },
+    { v:"schuldgefuehle", l:"Schuldgefühle / Scham" },
+  ]},
+  { id:"sw_mutter", s:3, num:"16", text:"Als wie hoch schätzt du deine Selbstwirksamkeit als Mutter* gerade ein?", hint:"Wie sehr vertraust du darauf, dass du als Mutter* das Richtige tust und kannst?", type:"scale", min:1, max:10, labs:["Sehr niedrig","Sehr hoch"] },
+  { id:"sw_wissenschaft", s:3, num:"17", text:"Als wie hoch schätzt du deine Selbstwirksamkeit als Wissenschaftler*in gerade ein?", hint:"Wie sehr vertraust du darauf, dass du deine wissenschaftliche Arbeit wirklich voranbringen kannst?", type:"scale", min:1, max:10, labs:["Sehr niedrig","Sehr hoch"] },
+  { id:"dw_zeiten", s:4, num:"18", text:"Zu welchen Tageszeiten bist du am leistungsfähigsten?", hint:"Nicht was gerade möglich ist — dein ideales Zeitfenster.", type:"multi", opts:[
+    { v:"frueh", l:"Früh morgens (vor 7 Uhr)" },
+    { v:"morgens", l:"Morgens (7–10 Uhr)" },
+    { v:"vormittags", l:"Vormittags (10–12 Uhr)" },
+    { v:"nachmittags", l:"Nachmittags (13–17 Uhr)" },
+    { v:"abends", l:"Abends (17–20 Uhr)" },
+    { v:"spaet", l:"Spät abends / nachts" },
+  ]},
+  { id:"dw_konzentration", s:4, num:"19", text:"Wie gut kannst du dich konzentrieren, wenn du wirklich ungestört Zeit hast?", hint:"Nicht wie oft du Zeit hast — sondern wie tief du kommst, wenn du sie hast.", type:"scale", min:1, max:5, labs:["Gar nicht","Sehr tief"] },
+  { id:"dw_dauer", s:4, num:"20", text:"Wie lange kannst du gerade am Stück wirklich konzentriert arbeiten?", hint:"Ehrlich — ohne aufzugeben oder abgelenkt zu werden.", type:"radio", opts:[
+    { v:"unter20", l:"Unter 20 Minuten" },
+    { v:"20bis45", l:"20–45 Minuten" },
+    { v:"45bis90", l:"45–90 Minuten" },
+    { v:"ueber90", l:"Über 90 Minuten am Stück" },
+  ]},
+  { id:"dw_tools", s:4, num:"21", text:"Nutzt du bereits Strategien oder Tools für deinen Fokus?", hint:"Timer, Musik, feste Zeiten, Rituale — was auch immer.", type:"ta", rows:2, max:300, ph:"z.B. \"Manchmal Timer, aber nicht konsequent\" oder \"Noch gar nichts\"" },
+  { id:"fokuszeit_realistisch", s:4, num:"22", text:"Wie viel Fokuszeit hast du realistisch in den nächsten drei Wochen?", hint:"Nicht was du dir wünschst — was wirklich da ist.", type:"radio", cols:2, opts:[
+    { v:"unter2h", l:"Unter 2 Stunden/Woche" },
+    { v:"2bis5h", l:"2–5 Stunden/Woche" },
+    { v:"5bis10h", l:"5–10 Stunden/Woche" },
+    { v:"ueber10h", l:"Über 10 Stunden/Woche" },
+  ]},
+  { id:"fokuszeit_planung", s:4, num:"23", text:"Stell dir vor, du hast 90 Minuten Fokuszeit eingeplant. Was musst du organisieren, damit diese dir wirklich gehören?", hint:"Kinderbetreuung, Partner*in, Kollegen, innere Stimmen — was auch immer im Weg steht.", type:"ta", rows:4, max:400, ph:"Was braucht es, damit diese 90 Minuten wirklich gehören dir?" },
+  { id:"dw_wunsch", s:4, num:"24", text:"Wovon wünschst du dir mehr in deinem Schreiballtag — und wovon weniger?", hint:"Beide Seiten zählen.", type:"ta", rows:4, max:400, ph:"Mehr: ... / Weniger: ..." },
+  { id:"schreibfee", s:5, num:"25", text:"Wenn dir die Schreibfee heute Nacht eine neue Fähigkeit bringen dürfte — welche wäre das?", hint:"Was wäre das größte Geschenk für dein Schreiben?", type:"ta", rows:3, max:300, ph:"Alles ist erlaubt." },
+  { id:"nachher", s:5, num:"26", text:"Und — wie geht es dir jetzt, nachdem du all das in Worte gefasst hast?", hint:"Der Bogen schließt sich.", type:"gefuehl" },
+];
+
+// ─── SYSTEM PROMPT ───────────────────────────────────────────────
+const SYSTEM = `Du bist ALMA, die systemische KI-Schreibbegleiterin von Dr. Wiebke Vogelaar (Alma Mater Schreibcoaching). Du analysierst den Textbeziehungs-Audit einer Wissenschaftlerin mit Care-Verantwortung und erstellst eine substantielle, wirklich hilfreiche Analyse.
+
+KERNKONZEPTE:
+- Textbeziehung: Emotionale Verbindung zum Schreib-Ich. Drei Vertrauensebenen: in eigene Fähigkeiten, in den Schreibprozess, in begleitende Menschen.
+- Care Concentration Gap (CCG): Strukturell weniger Deep Work durch Sorgearbeit. Konzentration braucht Rückzug — Sorgearbeit erschwert Rückzug.
+- Drei Sorgearbeitstypen: Aktive (orts-/zeitgebunden), Kognitive (Mental Load = kommt mit an den Schreibtisch), Emotionale (Emotional Load = kommt mit an den Schreibtisch).
+- Fürsorgedefizit: Mütter* leisten viel, bekommen wenig zurück.
+- Dauerverfügbarkeit: Das eigentliche Strukturproblem, nicht fehlende Disziplin.
+- Erschöpfungsblockade: Körper und Geist sagen Nein — kein Willensproblem.
+- Erholungsprokrastination: Erholungsbedürfnis drückt sich als Vermeidung aus.
+- Academic Mom Guilt: Gleichzeitiges Versagengefühl in Wissenschaft und Mutterschaft.
+- Konzentrationsrückbildung: Nach Geburt strukturell schwerer zu konzentrieren — normal und umkehrbar.
+
+DEEP WORK MODELLE:
+- Rhythmisch: Täglich feste kleine Zeitfenster (45-90 min). Ideal als Einstieg.
+- Bimodal: Ganze Tage oder mehrtägige Phasen. Braucht gute Unterstützung.
+- Journalistisch: Flexible Kurzblocks — nur für Geübte.
+- Mix: Rhythmisch + bimodal = oft realistischste Lösung für Mütter*.
+
+DEEP WORK BEREITSCHAFT:
+- HOCH: Konzentration 4-5/5, Dauer 45+min, etwas Struktur → Bimodal oder Mix, DWE empfehlen
+- MITTEL: Konzentration 3/5, Dauer 20-45min → Rhythmisch, DWE als Aufbau
+- AUFBAU: Konzentration 1-2/5, Dauer unter 20min → erst Textbeziehung/Erschöpfung angehen
+
+POMODORO-NUANCIERUNG: Wenn Pomodoro erwähnt oder abgelehnt: nicht einfach spiegeln. Erklären dass Pausen beim Deep Work wichtig sind — das Luftholen beim Auftauchen. Herausforderung für Mütter*: in Pausen NICHT in Verfügbarkeit wechseln. Der Alma-Timer hilft dabei. Die Alma-HOOD schafft soziale Verbindlichkeit.
+
+SPRACHREGELN (absolut bindend):
+- NIEMALS "einfach" und "schreiben" in einem Satz kombinieren.
+- Keine generischen Motivationsfloskeln.
+- Immer konkret auf diese Person eingehen.
+
+SCHREIBFEE: Nicht nur spiegeln. Immer: Was würde sich ändern wenn die Fee das brächte? + Einladung zum 15-min Freewriting + Hinweis auf Mini-Kurs Textbeziehung.
+
+PRODUKTKATEGORIEN:
+- dwe: Bereitschaft hoch/mittel + Hauptproblem fehlende Deep Work Struktur
+- textbeziehung: Gestörte Textbeziehung als Hauptthema
+- mental_load: Mental/Emotional Load dominiert
+- muttertaet: Academic Mom Guilt, Identitätskonflikt
+- big_rocks: Fehlende Planung, Fremdbestimmung
+- zyklus: Zyklusbewusstsein relevant
+- alma_hood: Community + Struktur + Verbindlichkeit als Hauptbedürfnis
+- collection: Mehrere gleichwertige Problemfelder
+
+AUSGABE — NUR dieses JSON, kein Text darum:
+{
+  "vorher": [Zahl 1-5],
+  "nachher": [Zahl 1-5],
+  "einleitung": "2-3 Sätze, warm und konkret auf ihre Antworten bezogen.",
+  "textbeziehung_analyse": "3-4 Sätze: aktuelle Textbeziehung + Wunsch + was sich ändern würde.",
+  "care_dynamik": "3-4 Sätze: Sorgearbeitstypen, Dauerverfügbarkeit, Abgrenzungsbedarf, was die 90-Minuten-Planungsfrage zeigt.",
+  "selbstwirksamkeit_einblick": "2-3 Sätze: Schere zwischen Mutter* und Wissenschaftlerin benennen.",
+  "hauptmuster": { "name": "Wiebkes Begriff", "erklaerung": "2-3 Sätze konkret auf sie bezogen." },
+  "deep_work": {
+    "bereitschaft": "hoch|mittel|aufbau",
+    "modell": "Rhythmisch|Bimodal|Journalistisch|Mix Rhythmisch+Bimodal",
+    "modell_begruendung": "2-3 Sätze mit Bezug auf ihre Tageszeiten und Fokuszeit-Antworten.",
+    "erste_schritte": "2-3 konkrete erste Schritte als Fließtext."
+  },
+  "mikro_tipp": "1 konkreter Tipp den sie heute noch ausprobieren kann.",
+  "schreibfee": "2-3 Sätze: Antwort aufgreifen + Was würde sich ändern? + Freewriting-Einladung + Textbeziehungs-Kurs.",
+  "kategorie": "dwe|textbeziehung|mental_load|muttertaet|big_rocks|zyklus|alma_hood|collection",
+  "naechster_schritt": "2-3 Sätze warum dieses Produkt jetzt passt.",
+  "alma_hood_empfehlung": "1-2 Sätze Alma-HOOD als zweite Empfehlung (DWE inklusive, Community, Timer erwähnen)."
+}`;
+
+// ─── STATE ───────────────────────────────────────────────────────
+const S = {
+  phase: "welcome",
+  step: 0,
+  answers: {},
+  name: "",
+  email: "",
+  result: null,
+  error: null,
+};
+
+// ─── UTILS ───────────────────────────────────────────────────────
+function setVal(id, val) { S.answers[id] = val; }
+function getVal(id) { return S.answers[id]; }
+
+function canAdvance(q) {
+  const v = getVal(q.id);
+  if (!q || !v) return false;
+  if (q.type === "gefuehl" || q.type === "scale" || q.type === "radio") return !!v;
+  if (q.type === "ta") return (v || "").trim().length > 0;
+  if (q.type === "multi3") return (v || []).length > 0;
+  if (q.type === "multi") return (v || []).length > 0;
+  if (q.type === "deadline") return !!(v && v.gefuehl);
+  return false;
+}
+
+function buildMessage() {
+  const lines = [`Name: ${S.name}\n`];
+  Q.forEach(q => {
+    const v = getVal(q.id);
+    if (!v) return;
+    let d = v;
+    if (q.type === "gefuehl") {
+      const g = GEFUEHL.find(x => x.v === v);
+      d = g ? `${g.l} (${v}/5)` : v;
+    } else if (q.type === "radio") {
+      const o = (q.opts || []).find(x => x.v === v);
+      d = o ? o.l : v;
+    } else if (q.type === "multi" || q.type === "multi3") {
+      d = (v || []).map(x => { const o = (q.opts||[]).find(y=>y.v===x); return o?o.l:x; }).join(", ");
+    } else if (q.type === "deadline") {
+      d = `Datum: ${v.datum || "keine"}, Gefühl: ${v.gefuehl || "–"}/5`;
+    }
+    lines.push(`${q.num}. ${q.text}\n→ ${d}`);
+  });
+  return lines.join("\n\n");
+}
+
+// ─── API CALL ────────────────────────────────────────────────────
+async function runAnalysis() {
+  S.phase = "loading";
+  S.error = null;
+  render();
+
+  try {
+    if (!API_KEY) throw new Error("Kein API-Key konfiguriert. Bitte die iframe-URL mit ?k=... ergänzen.");
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": API_KEY,
+        "anthropic-version": "2023-06-01",
+        "anthropic-dangerous-direct-browser-access": "true",
+      },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 2500,
+        system: SYSTEM,
+        messages: [{ role: "user", content: buildMessage() }],
+      }),
+    });
+
+    if (!res.ok) throw new Error(`API Fehler ${res.status}`);
+    const data = await res.json();
+    const raw = data.content?.find(b => b.type === "text")?.text || "";
+    let clean = raw.replace(/^```json\s*/m, "").replace(/```\s*$/m, "").trim();
+    let parsed;
+    try {
+      parsed = JSON.parse(clean);
+    } catch {
+      const last = clean.lastIndexOf('"}');
+      if (last > 0) parsed = JSON.parse(clean.slice(0, last + 2) + "}");
+      else throw new Error("Analyse konnte nicht gelesen werden");
+    }
+    S.result = parsed;
+    S.phase = "results";
+  } catch (e) {
+    S.error = `Die Analyse konnte nicht erstellt werden (${e.message}). Bitte versuche es nochmal.`;
+    S.phase = "questions";
+  }
+  render();
+}
+
+// ─── RENDER HELPERS ───────────────────────────────────────────────
+function el(tag, attrs, ...children) {
+  const e = document.createElement(tag);
+  if (attrs) Object.entries(attrs).forEach(([k, v]) => {
+    if (k === "className") e.className = v;
+    else if (k === "style") Object.assign(e.style, v);
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2).toLowerCase(), v);
+    else e.setAttribute(k, v);
+  });
+  children.flat().forEach(c => {
+    if (c == null) return;
+    e.appendChild(typeof c === "string" ? document.createTextNode(c) : c);
+  });
+  return e;
+}
+
+function div(className, ...children) { return el("div", { className }, ...children); }
+function p(className, text) { const d = el("p", { className }); d.textContent = text; return d; }
+
+// ─── QUESTION RENDERERS ──────────────────────────────────────────
+function renderGefuehl(q) {
+  const row = div("gefuehl-row");
+  const val = getVal(q.id);
+  GEFUEHL.forEach(g => {
+    const btn = el("button", {
+      className: "g-btn" + (val === g.v ? " sel" : ""),
+      onClick: () => { setVal(q.id, g.v); render(); }
+    }, g.e, el("span", {}, g.l));
+    row.appendChild(btn);
+  });
+  return row;
+}
+
+function renderScale(q) {
+  const val = getVal(q.id);
+  const nums = Array.from({ length: q.max - q.min + 1 }, (_, i) => q.min + i);
+  const row = div("scale-row");
+  nums.forEach(n => {
+    row.appendChild(el("button", {
+      className: "sc-btn" + (val === n ? " sel" : ""),
+      onClick: () => { setVal(q.id, n); render(); }
+    }, String(n)));
+  });
+  const labs = div("scale-labs");
+  labs.appendChild(el("span", {}, q.labs[0]));
+  labs.appendChild(el("span", {}, q.labs[1]));
+  const wrap = div("");
+  wrap.appendChild(row);
+  wrap.appendChild(labs);
+  return wrap;
+}
+
+function renderRadio(q) {
+  const val = getVal(q.id);
+  const grid = div("radio-grid" + (q.cols === 2 ? " two-col" : ""));
+  q.opts.forEach(o => {
+    const card = el("div", {
+      className: "r-card" + (val === o.v ? " sel" : ""),
+      onClick: () => { setVal(q.id, o.v); render(); }
+    },
+      el("div", { className: "dot" }, val === o.v ? el("div", { className: "dot-inner" }) : null),
+      o.l
+    );
+    grid.appendChild(card);
+  });
+  return grid;
+}
+
+function renderMulti(q, max) {
+  const val = getVal(q.id) || [];
+  const grid = div("cb-grid");
+  q.opts.forEach(o => {
+    const sel = val.includes(o.v);
+    const card = el("div", {
+      className: "cb-card" + (sel ? " sel" : ""),
+      onClick: () => {
+        let nv = [...val];
+        if (nv.includes(o.v)) nv = nv.filter(x => x !== o.v);
+        else if (!max || nv.length < max) nv.push(o.v);
+        setVal(q.id, nv);
+        render();
+      }
+    },
+      el("div", { className: "cb-box" }, sel ? "✓" : ""),
+      o.l
+    );
+    grid.appendChild(card);
+  });
+  const wrap = div("");
+  wrap.appendChild(grid);
+  if (max) {
+    const note = div("multi-note");
+    note.textContent = `${val.length} / ${max} gewählt`;
+    wrap.appendChild(note);
+  }
+  return wrap;
+}
+
+function renderTextarea(q) {
+  const val = getVal(q.id) || "";
+  const ta = el("textarea", {
+    className: "ta",
+    rows: String(q.rows || 3),
+    maxlength: String(q.max || 300),
+    placeholder: q.ph || "",
+  });
+  ta.value = val;
+  ta.addEventListener("input", () => { setVal(q.id, ta.value); charEl.textContent = `${ta.value.length} / ${q.max}`; updateBtn(); });
+  const charEl = div("char");
+  charEl.textContent = `${val.length} / ${q.max}`;
+  const wrap = div("");
+  wrap.appendChild(ta);
+  wrap.appendChild(charEl);
+  return wrap;
+}
+
+function renderDeadline(q) {
+  const val = getVal(q.id) || {};
+  const wrap = div("dl-wrap");
+
+  const dateLabel = div("dl-label"); dateLabel.textContent = "Deadline-Datum (optional)";
+  const dateInput = el("input", { type: "date", className: "dl-input" });
+  dateInput.value = val.datum || "";
+  dateInput.addEventListener("change", () => {
+    setVal(q.id, { ...getVal(q.id), datum: dateInput.value });
+    updateBtn();
+  });
+
+  const feelLabel = div("dl-feel"); feelLabel.textContent = "Wie fühlst du dich damit?";
+  const feelScale = renderScaleInline({ min: 1, max: 5, labs: ["Sehr belastend", "Kein Stress"] }, val.gefuehl, (n) => {
+    setVal(q.id, { ...getVal(q.id), gefuehl: n });
+    render();
+  });
+
+  wrap.appendChild(dateLabel);
+  wrap.appendChild(dateInput);
+  wrap.appendChild(feelLabel);
+  wrap.appendChild(feelScale);
+  return wrap;
+}
+
+function renderScaleInline(q, val, onChange) {
+  const nums = Array.from({ length: q.max - q.min + 1 }, (_, i) => q.min + i);
+  const row = div("scale-row");
+  nums.forEach(n => {
+    row.appendChild(el("button", {
+      className: "sc-btn" + (val === n ? " sel" : ""),
+      onClick: () => onChange(n)
+    }, String(n)));
+  });
+  const labs = div("scale-labs");
+  labs.appendChild(el("span", {}, q.labs[0]));
+  labs.appendChild(el("span", {}, q.labs[1]));
+  const wrap = div("");
+  wrap.appendChild(row);
+  wrap.appendChild(labs);
+  return wrap;
+}
+
+// ─── MAIN RENDER ─────────────────────────────────────────────────
+function render() {
+  const card = document.getElementById("card");
+  card.innerHTML = "";
+
+  if (S.phase === "welcome")   card.appendChild(renderWelcome());
+  if (S.phase === "questions") card.appendChild(renderQuestion());
+  if (S.phase === "loading")   card.appendChild(renderLoading());
+  if (S.phase === "results")   card.appendChild(renderResults());
+}
+
+// ─── WELCOME ──────────────────────────────────────────────────────
+function renderWelcome() {
+  const frag = document.createDocumentFragment();
+
+  const hdr = div("hdr");
+  const eyebrow = div("eyebrow"); eyebrow.textContent = "Alma Mater Schreibcoaching";
+  const h1 = el("h1", {}); h1.textContent = "Dein Textbeziehungs-Audit";
+  const sub = el("p", {}); sub.textContent = "Eine tiefe, persönliche Analyse deiner Textbeziehung, deiner Care-Situation und deiner Deep Work Möglichkeiten.";
+  hdr.appendChild(eyebrow); hdr.appendChild(h1); hdr.appendChild(sub);
+
+  const body = div("welcome-body");
+  const p1 = el("p", {}); p1.textContent = "Du bekommst eine substantielle Einschätzung — keine allgemeinen Tipps, sondern eine Analyse, die wirklich zu deiner Situation passt.";
+  const pill = div("pill"); pill.textContent = "⏱ Ca. 15 Minuten · 26 Fragen in 5 Blöcken";
+
+  body.appendChild(p1);
+  body.appendChild(pill);
+
+  // Name field
+  const nameLabel = el("label", { className: "field-lbl" }); nameLabel.textContent = "Dein Vorname";
+  const nameInput = el("input", { type: "text", className: "field", placeholder: "Wie heißt du?" });
+  nameInput.value = S.name;
+  nameInput.addEventListener("input", () => { S.name = nameInput.value.trim(); startBtn.disabled = !S.name || !S.email; });
+
+  // Email field
+  const emailLabel = el("label", { className: "field-lbl" }); emailLabel.textContent = "Deine E-Mail-Adresse";
+  const emailInput = el("input", { type: "email", className: "field", placeholder: "damit du deine Analyse auch per Mail erhältst" });
+  emailInput.value = S.email;
+  emailInput.addEventListener("input", () => { S.email = emailInput.value.trim(); startBtn.disabled = !S.name || !S.email; });
+
+  const startBtn = el("button", {
+    className: "btn",
+    style: { width: "100%" },
+    onClick: () => { S.phase = "questions"; S.step = 0; render(); }
+  });
+  startBtn.textContent = "Audit starten →";
+  startBtn.disabled = !S.name || !S.email;
+
+  body.appendChild(nameLabel);
+  body.appendChild(nameInput);
+  body.appendChild(emailLabel);
+  body.appendChild(emailInput);
+  body.appendChild(startBtn);
+
+  frag.appendChild(hdr);
+  frag.appendChild(body);
+  return frag;
+}
+
+// ─── QUESTION ────────────────────────────────────────────────────
+let updateBtn; // global ref so input handlers can call it
+
+function renderQuestion() {
+  const q = Q[S.step];
+  const sec = SECTIONS[q.s];
+  const progress = (S.step / Q.length) * 100;
+
+  const frag = document.createDocumentFragment();
+
+  const hdr = div("hdr");
+  hdr.style.background = sec.color;
+  const eyebrow = div("eyebrow"); eyebrow.textContent = `Frage ${S.step + 1} von ${Q.length}`;
+  const badge = div("section-badge"); badge.textContent = sec.label;
+  const h1 = el("h1", {}); h1.textContent = q.text;
+  hdr.appendChild(eyebrow); hdr.appendChild(badge); hdr.appendChild(h1);
+
+  const progWrap = div("prog-wrap");
+  const progFill = div("prog-fill"); progFill.style.width = `${progress}%`;
+  progWrap.appendChild(progFill);
+
+  const body = div("body");
+
+  if (q.hint) {
+    const hint = div("hint"); hint.textContent = q.hint;
+    body.appendChild(hint);
+  }
+
+  // Render question input
+  if (q.type === "gefuehl") body.appendChild(renderGefuehl(q));
+  else if (q.type === "scale") body.appendChild(renderScale(q));
+  else if (q.type === "radio") body.appendChild(renderRadio(q));
+  else if (q.type === "multi3") body.appendChild(renderMulti(q, 3));
+  else if (q.type === "multi") body.appendChild(renderMulti(q, null));
+  else if (q.type === "ta") body.appendChild(renderTextarea(q));
+  else if (q.type === "deadline") body.appendChild(renderDeadline(q));
+
+  // Error
+  if (S.error) {
+    const err = div("err"); err.textContent = S.error;
+    body.appendChild(err);
+  }
+
+  // Nav
+  const nav = div("nav");
+  const backBtn = el("button", {
+    className: "btn-ghost",
+    onClick: () => { S.error = null; if (S.step > 0) S.step--; else S.phase = "welcome"; render(); }
+  });
+  backBtn.textContent = "← Zurück";
+
+  const nextBtn = el("button", { className: "btn" });
+  nextBtn.textContent = S.step < Q.length - 1 ? "Weiter →" : "Meine Analyse →";
+  nextBtn.disabled = !canAdvance(q);
+  nextBtn.addEventListener("click", () => {
+    if (S.step < Q.length - 1) { S.step++; render(); }
+    else { runAnalysis(); }
+  });
+
+  updateBtn = () => { nextBtn.disabled = !canAdvance(q); };
+
+  nav.appendChild(backBtn);
+  nav.appendChild(nextBtn);
+  body.appendChild(nav);
+
+  frag.appendChild(hdr);
+  frag.appendChild(progWrap);
+  frag.appendChild(body);
+  return frag;
+}
+
+// ─── LOADING ────────────────────────────────────────────────────
+function renderLoading() {
+  const frag = document.createDocumentFragment();
+
+  const hdr = div("hdr");
+  const eyebrow = div("eyebrow"); eyebrow.textContent = "Alma Mater Schreibcoaching";
+  const h1 = el("h1", {}); h1.textContent = "Deine Analyse entsteht …";
+  hdr.appendChild(eyebrow); hdr.appendChild(h1);
+
+  const body = div("loading-body");
+  const spinner = div("spinner");
+  const txt = el("p", {}); txt.textContent = "Ich lese deine Antworten sorgfältig durch. Das dauert einen Moment.";
+  body.appendChild(spinner);
+  body.appendChild(txt);
+
+  frag.appendChild(hdr);
+  frag.appendChild(body);
+  return frag;
+}
+
+// ─── RESULTS ────────────────────────────────────────────────────
+function renderResults() {
+  const r = S.result;
+  const product = PRODUCTS[r.kategorie] || PRODUCTS.collection;
+
+  const frag = document.createDocumentFragment();
+
+  // Header
+  const hdr = div("hdr green");
+  const eyebrow = div("eyebrow"); eyebrow.textContent = "Dein Textbeziehungs-Audit · Alma Mater";
+  const h1 = el("h1", {}); h1.textContent = `Hallo ${S.name} — hier ist deine persönliche Analyse.`;
+  hdr.appendChild(eyebrow); hdr.appendChild(h1);
+
+  const body = div("res-body");
+
+  // Mood row
+  if (r.vorher && r.nachher) {
+    const gVor = GEFUEHL.find(g => g.v === r.vorher);
+    const gNach = GEFUEHL.find(g => g.v === r.nachher);
+    if (gVor && gNach) {
+      const moodRow = div("mood-row");
+      const mV = div("mood-item");
+      const mVE = div("mood-emoji"); mVE.textContent = gVor.e;
+      const mVL = div("mood-lbl"); mVL.textContent = "Vorher";
+      mV.appendChild(mVE); mV.appendChild(mVL);
+      const arr = div("mood-arrow"); arr.textContent = "→";
+      const mN = div("mood-item");
+      const mNE = div("mood-emoji"); mNE.textContent = gNach.e;
+      const mNL = div("mood-lbl"); mNL.textContent = "Nachher";
+      mN.appendChild(mNE); mN.appendChild(mNL);
+      moodRow.appendChild(mV); moodRow.appendChild(arr); moodRow.appendChild(mN);
+      body.appendChild(moodRow);
+    }
+  }
+
+  function section(labelText, content) {
+    const sec = div("res-section");
+    const lbl = div("res-label"); lbl.textContent = labelText;
+    sec.appendChild(lbl);
+    if (typeof content === "string") {
+      const txt = el("p", {}); txt.textContent = content;
+      sec.appendChild(txt);
+    } else {
+      sec.appendChild(content);
+    }
+    body.appendChild(sec);
+    body.appendChild(div("divider"));
+  }
+
+  // Intro
+  const introP = el("p", { style: { fontStyle: "italic", fontSize: "15px", lineHeight: "1.8" } });
+  introP.textContent = r.einleitung;
+  body.appendChild(div("res-section", introP));
+  body.appendChild(div("divider"));
+
+  section("Deine Textbeziehung", r.textbeziehung_analyse);
+  section("Deine Care-Dynamik", r.care_dynamik);
+  if (r.selbstwirksamkeit_einblick) section("Selbstwirksamkeit — zwei Seiten", r.selbstwirksamkeit_einblick);
+
+  // Hauptmuster
+  const musterSec = div("res-section");
+  const musterLbl = div("res-label"); musterLbl.textContent = "Was ich in deiner Situation sehe";
+  const tag = div("tag"); tag.textContent = r.hauptmuster?.name || "";
+  const musterTxt = el("p", {}); musterTxt.textContent = r.hauptmuster?.erklaerung || "";
+  musterSec.appendChild(musterLbl); musterSec.appendChild(tag); musterSec.appendChild(musterTxt);
+  body.appendChild(musterSec);
+  body.appendChild(div("divider"));
+
+  // Deep Work
+  const dw = r.deep_work || {};
+  const bereit = dw.bereitschaft === "hoch" || dw.bereitschaft === "mittel";
+  const dwSec = div("res-section");
+  const dwLbl = div("res-label"); dwLbl.textContent = "Dein Deep Work";
+  const dwBadge = div("badge " + (bereit ? "green" : "gold"));
+  dwBadge.textContent = bereit ? "✓ Du bist bereit für Deep Work" : "→ Erst Fundament legen";
+  const dwBox = div("dw-box");
+  const dwTitle = div("dw-title"); dwTitle.textContent = `Modell: ${dw.modell || ""}`;
+  const dwBeg = el("p", {}); dwBeg.textContent = dw.modell_begruendung || "";
+  dwBox.appendChild(dwTitle); dwBox.appendChild(dwBeg);
+  if (dw.erste_schritte) {
+    const dwSteps = div("dw-steps");
+    const dwStepsLbl = el("strong", { style: { fontSize: "12px" } }); dwStepsLbl.textContent = "Erste Schritte:";
+    const dwStepsTxt = document.createTextNode(" " + dw.erste_schritte);
+    dwSteps.appendChild(dwStepsLbl); dwSteps.appendChild(dwStepsTxt);
+    dwBox.appendChild(dwSteps);
+  }
+  dwSec.appendChild(dwLbl); dwSec.appendChild(dwBadge); dwSec.appendChild(dwBox);
+  body.appendChild(dwSec);
+  body.appendChild(div("divider"));
+
+  // Mikro-Tipp
+  if (r.mikro_tipp) {
+    const mikSec = div("res-section");
+    const mikLbl = div("res-label"); mikLbl.textContent = "Dein Tipp für heute";
+    const mikBox = div("mikro-box"); mikBox.textContent = r.mikro_tipp;
+    mikSec.appendChild(mikLbl); mikSec.appendChild(mikBox);
+    body.appendChild(mikSec);
+    body.appendChild(div("divider"));
+  }
+
+  // Schreibfee
+  if (r.schreibfee) {
+    section("Deine Schreibfee", r.schreibfee);
+  }
+
+  // Nächster Schritt
+  const nextSec = div("res-section");
+  const nextLbl = div("res-label"); nextLbl.textContent = "Dein nächster Schritt";
+  const nextTxt = el("p", { style: { marginBottom: "14px" } }); nextTxt.textContent = r.naechster_schritt;
+
+  const prodBox = div("product-box");
+  const pname = div("pname"); pname.textContent = product.name;
+  const pdesc = el("p", {}); pdesc.textContent = product.beschreibung;
+  const pbtn = el("a", { href: product.url, target: "_blank", className: "product-btn" });
+  pbtn.textContent = product.cta;
+  prodBox.appendChild(pname); prodBox.appendChild(pdesc); prodBox.appendChild(pbtn);
+
+  nextSec.appendChild(nextLbl); nextSec.appendChild(nextTxt); nextSec.appendChild(prodBox);
+
+  // Alma-HOOD secondary
+  if (r.alma_hood_empfehlung && r.kategorie !== "alma_hood") {
+    const hoodBox = div("hood-box", { style: { marginTop: "12px" } });
+    const hoodTitle = div(""); hoodTitle.className = "hood-title"; hoodTitle.textContent = "Und wenn du bereit bist für mehr:";
+    const hoodDesc = el("p", {}); hoodDesc.textContent = r.alma_hood_empfehlung;
+    const hoodBtn = el("a", { href: PRODUCTS.alma_hood.url, target: "_blank", className: "product-btn", style: { background: "#254b34", fontSize: "12px" } });
+    hoodBtn.textContent = PRODUCTS.alma_hood.cta;
+    hoodBox.appendChild(hoodTitle); hoodBox.appendChild(hoodDesc); hoodBox.appendChild(hoodBtn);
+    nextSec.appendChild(hoodBox);
+  }
+
+  body.appendChild(nextSec);
+
+  // Footer
+  const footer = div("footer-note");
+  footer.innerHTML = `Alma Mater Schreibcoaching · Dr. Wiebke Vogelaar<br>
+    <a href="https://www.schreibcoaching-fuer-mamas.de">schreibcoaching-fuer-mamas.de</a><br>
+    <span style="font-size:10px;margin-top:4px;display:block;">Deine Antworten wurden zur Analyse an Anthropic übermittelt und danach nicht gespeichert.</span>`;
+  body.appendChild(footer);
+
+  frag.appendChild(hdr);
+  frag.appendChild(body);
+  return frag;
+}
+
+// ─── INIT ────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
