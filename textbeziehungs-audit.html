@@ -1104,148 +1104,124 @@ function renderLoading() {
   return frag;
 }
 
-// ─── RESULTS ────────────────────────────────────────────────────
+// ─── ESCAPE HELPER ───────────────────────────────────────────────
+function esc(str) {
+  return String(str || "")
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+// ─── RESULTS (innerHTML approach - zuverlässiger) ────────────────
 function renderResults() {
   const r = S.result;
+  if (!r) { const d = document.createElement("div"); d.textContent="Keine Ergebnisse."; return d; }
+
   const product = PRODUCTS[r.kategorie] || PRODUCTS.collection;
-
-  const frag = document.createDocumentFragment();
-
-  // Header
-  const hdr = div("hdr green");
-  const eyebrow = div("eyebrow"); eyebrow.textContent = "Dein Textbeziehungs-Audit · Alma Mater";
-  const h1 = el("h1", {}); h1.textContent = `Hallo ${S.name} — hier ist deine persönliche Analyse.`;
-  hdr.appendChild(eyebrow); hdr.appendChild(h1);
-
-  const body = div("res-body");
-
-  // Mood row
-  if (r.vorher && r.nachher) {
-    const gVor = GEFUEHL.find(g => g.v === r.vorher);
-    const gNach = GEFUEHL.find(g => g.v === r.nachher);
-    if (gVor && gNach) {
-      const moodRow = div("mood-row");
-      const mV = div("mood-item");
-      const mVE = div("mood-emoji"); mVE.textContent = gVor.e;
-      const mVL = div("mood-lbl"); mVL.textContent = "Vorher";
-      mV.appendChild(mVE); mV.appendChild(mVL);
-      const arr = div("mood-arrow"); arr.textContent = "→";
-      const mN = div("mood-item");
-      const mNE = div("mood-emoji"); mNE.textContent = gNach.e;
-      const mNL = div("mood-lbl"); mNL.textContent = "Nachher";
-      mN.appendChild(mNE); mN.appendChild(mNL);
-      moodRow.appendChild(mV); moodRow.appendChild(arr); moodRow.appendChild(mN);
-      body.appendChild(moodRow);
-    }
-  }
-
-  function section(labelText, content) {
-    const sec = div("res-section");
-    const lbl = div("res-label"); lbl.textContent = labelText;
-    sec.appendChild(lbl);
-    if (typeof content === "string") {
-      const txt = el("p", {}); txt.textContent = content;
-      sec.appendChild(txt);
-    } else {
-      sec.appendChild(content);
-    }
-    body.appendChild(sec);
-    body.appendChild(div("divider"));
-  }
-
-  // Intro
-  const introP = el("p", { style: { fontStyle: "italic", fontSize: "15px", lineHeight: "1.8" } });
-  introP.textContent = r.einleitung;
-  body.appendChild(div("res-section", introP));
-  body.appendChild(div("divider"));
-
-  section("Deine Textbeziehung", r.textbeziehung_analyse);
-  section("Deine Care-Dynamik", r.care_dynamik);
-  if (r.selbstwirksamkeit_einblick) section("Selbstwirksamkeit — zwei Seiten", r.selbstwirksamkeit_einblick);
-
-  // Hauptmuster
-  const musterSec = div("res-section");
-  const musterLbl = div("res-label"); musterLbl.textContent = "Was ich in deiner Situation sehe";
-  const tag = div("tag"); tag.textContent = r.hauptmuster?.name || "";
-  const musterTxt = el("p", {}); musterTxt.textContent = r.hauptmuster?.erklaerung || "";
-  musterSec.appendChild(musterLbl); musterSec.appendChild(tag); musterSec.appendChild(musterTxt);
-  body.appendChild(musterSec);
-  body.appendChild(div("divider"));
-
-  // Deep Work
   const dw = r.deep_work || {};
   const bereit = dw.bereitschaft === "hoch" || dw.bereitschaft === "mittel";
-  const dwSec = div("res-section");
-  const dwLbl = div("res-label"); dwLbl.textContent = "Dein Deep Work";
-  const dwBadge = div("badge " + (bereit ? "green" : "gold"));
-  dwBadge.textContent = bereit ? "✓ Du bist bereit für Deep Work" : "→ Erst Fundament legen";
-  const dwBox = div("dw-box");
-  const dwTitle = div("dw-title"); dwTitle.textContent = `Modell: ${dw.modell || ""}`;
-  const dwBeg = el("p", {}); dwBeg.textContent = dw.modell_begruendung || "";
-  dwBox.appendChild(dwTitle); dwBox.appendChild(dwBeg);
-  if (dw.erste_schritte) {
-    const dwSteps = div("dw-steps");
-    const dwStepsLbl = el("strong", { style: { fontSize: "12px" } }); dwStepsLbl.textContent = "Erste Schritte:";
-    const dwStepsTxt = document.createTextNode(" " + dw.erste_schritte);
-    dwSteps.appendChild(dwStepsLbl); dwSteps.appendChild(dwStepsTxt);
-    dwBox.appendChild(dwSteps);
-  }
-  dwSec.appendChild(dwLbl); dwSec.appendChild(dwBadge); dwSec.appendChild(dwBox);
-  body.appendChild(dwSec);
-  body.appendChild(div("divider"));
+  const gVor  = GEFUEHL.find(g => g.v === r.vorher);
+  const gNach = GEFUEHL.find(g => g.v === r.nachher);
 
-  // Mikro-Tipp
-  if (r.mikro_tipp) {
-    const mikSec = div("res-section");
-    const mikLbl = div("res-label"); mikLbl.textContent = "Dein Tipp für heute";
-    const mikBox = div("mikro-box"); mikBox.textContent = r.mikro_tipp;
-    mikSec.appendChild(mikLbl); mikSec.appendChild(mikBox);
-    body.appendChild(mikSec);
-    body.appendChild(div("divider"));
-  }
+  const moodHtml = (gVor && gNach) ? `
+    <div class="mood-row">
+      <div class="mood-item"><div class="mood-emoji">${gVor.e}</div><div class="mood-lbl">Vorher</div></div>
+      <div class="mood-arrow">→</div>
+      <div class="mood-item"><div class="mood-emoji">${gNach.e}</div><div class="mood-lbl">Nachher</div></div>
+    </div>` : "";
 
-  // Schreibfee
-  if (r.schreibfee) {
-    section("Deine Schreibfee", r.schreibfee);
-  }
+  const swHtml = r.selbstwirksamkeit_einblick ? `
+    <div class="divider"></div>
+    <div class="res-section">
+      <div class="res-label">Selbstwirksamkeit — zwei Seiten</div>
+      <p>${esc(r.selbstwirksamkeit_einblick)}</p>
+    </div>` : "";
 
-  // Nächster Schritt
-  const nextSec = div("res-section");
-  const nextLbl = div("res-label"); nextLbl.textContent = "Dein nächster Schritt";
-  const nextTxt = el("p", { style: { marginBottom: "14px" } }); nextTxt.textContent = r.naechster_schritt;
+  const mikHtml = r.mikro_tipp ? `
+    <div class="divider"></div>
+    <div class="res-section">
+      <div class="res-label">Dein Tipp für heute</div>
+      <div class="mikro-box">${esc(r.mikro_tipp)}</div>
+    </div>` : "";
 
-  const prodBox = div("product-box");
-  const pname = div("pname"); pname.textContent = product.name;
-  const pdesc = el("p", {}); pdesc.textContent = product.beschreibung;
-  const pbtn = el("a", { href: product.url, target: "_blank", className: "product-btn" });
-  pbtn.textContent = product.cta;
-  prodBox.appendChild(pname); prodBox.appendChild(pdesc); prodBox.appendChild(pbtn);
+  const feeHtml = r.schreibfee ? `
+    <div class="divider"></div>
+    <div class="res-section">
+      <div class="res-label">Deine Schreibfee</div>
+      <p>${esc(r.schreibfee)}</p>
+    </div>` : "";
 
-  nextSec.appendChild(nextLbl); nextSec.appendChild(nextTxt); nextSec.appendChild(prodBox);
+  const hoodHtml = (r.alma_hood_empfehlung && r.kategorie !== "alma_hood") ? `
+    <div style="background:#eaf2ed;border-radius:12px;padding:16px 18px;margin-top:12px;">
+      <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#254b34;margin-bottom:6px;">Und wenn du bereit bist für mehr:</div>
+      <p style="font-size:13px;line-height:1.65;margin-bottom:12px;">${esc(r.alma_hood_empfehlung)}</p>
+      <a href="${PRODUCTS.alma_hood.url}" target="_blank" class="product-btn" style="background:#254b34;font-size:12px;">${esc(PRODUCTS.alma_hood.cta)}</a>
+    </div>` : "";
 
-  // Alma-HOOD secondary
-  if (r.alma_hood_empfehlung && r.kategorie !== "alma_hood") {
-    const hoodBox = el("div", { className: "hood-box", style: { marginTop: "12px" } });
-    const hoodTitle = div(""); hoodTitle.className = "hood-title"; hoodTitle.textContent = "Und wenn du bereit bist für mehr:";
-    const hoodDesc = el("p", {}); hoodDesc.textContent = r.alma_hood_empfehlung;
-    const hoodBtn = el("a", { href: PRODUCTS.alma_hood.url, target: "_blank", className: "product-btn", style: { background: "#254b34", fontSize: "12px" } });
-    hoodBtn.textContent = PRODUCTS.alma_hood.cta;
-    hoodBox.appendChild(hoodTitle); hoodBox.appendChild(hoodDesc); hoodBox.appendChild(hoodBtn);
-    nextSec.appendChild(hoodBox);
-  }
+  const container = document.createElement("div");
+  container.innerHTML = `
+    <div class="hdr green">
+      <div class="eyebrow">Dein Textbeziehungs-Audit · Alma Mater</div>
+      <h1>Hallo ${esc(S.name)} — hier ist deine persönliche Analyse.</h1>
+    </div>
+    <div class="res-body">
+      ${moodHtml}
 
-  body.appendChild(nextSec);
+      <div class="res-section">
+        <p style="font-style:italic;font-size:15px;line-height:1.8;">${esc(r.einleitung)}</p>
+      </div>
+      <div class="divider"></div>
 
-  // Footer
-  const footer = div("footer-note");
-  footer.innerHTML = `Alma Mater Schreibcoaching · Dr. Wiebke Vogelaar<br>
-    <a href="https://www.schreibcoaching-fuer-mamas.de">schreibcoaching-fuer-mamas.de</a><br>
-    <span style="font-size:10px;margin-top:4px;display:block;">Deine Antworten wurden zur Analyse an Anthropic übermittelt und danach nicht gespeichert.</span>`;
-  body.appendChild(footer);
+      <div class="res-section">
+        <div class="res-label">Deine Textbeziehung</div>
+        <p>${esc(r.textbeziehung_analyse)}</p>
+      </div>
+      <div class="divider"></div>
 
-  frag.appendChild(hdr);
-  frag.appendChild(body);
-  return frag;
+      <div class="res-section">
+        <div class="res-label">Deine Care-Dynamik</div>
+        <p>${esc(r.care_dynamik)}</p>
+      </div>
+      ${swHtml}
+      <div class="divider"></div>
+
+      <div class="res-section">
+        <div class="res-label">Was ich in deiner Situation sehe</div>
+        <div class="tag">${esc(r.hauptmuster?.name)}</div>
+        <p>${esc(r.hauptmuster?.erklaerung)}</p>
+      </div>
+      <div class="divider"></div>
+
+      <div class="res-section">
+        <div class="res-label">Dein Deep Work</div>
+        <div class="badge ${bereit ? "green" : "gold"}">${bereit ? "✓ Du bist bereit für Deep Work" : "→ Erst Fundament legen"}</div>
+        <div class="dw-box">
+          <div class="dw-title">Modell: ${esc(dw.modell)}</div>
+          <p>${esc(dw.modell_begruendung)}</p>
+          ${dw.erste_schritte ? `<div class="dw-steps"><strong style="font-size:12px;">Erste Schritte:</strong> ${esc(dw.erste_schritte)}</div>` : ""}
+        </div>
+      </div>
+      ${mikHtml}
+      ${feeHtml}
+      <div class="divider"></div>
+
+      <div class="res-section">
+        <div class="res-label">Dein nächster Schritt</div>
+        <p style="margin-bottom:14px;">${esc(r.naechster_schritt)}</p>
+        <div class="product-box">
+          <div class="pname">${esc(product.name)}</div>
+          <p>${esc(product.beschreibung)}</p>
+          <a href="${product.url}" target="_blank" class="product-btn">${esc(product.cta)}</a>
+        </div>
+        ${hoodHtml}
+      </div>
+
+      <div class="footer-note">
+        Alma Mater Schreibcoaching · Dr. Wiebke Vogelaar<br>
+        <a href="https://www.schreibcoaching-fuer-mamas.de" style="color:#7a7a7a;">schreibcoaching-fuer-mamas.de</a><br>
+        <span style="font-size:10px;margin-top:4px;display:block;">Deine Antworten wurden zur Analyse an Anthropic übermittelt und danach nicht gespeichert.</span>
+      </div>
+    </div>`;
+  return container;
 }
 
 // ─── INIT ────────────────────────────────────────────────────────
