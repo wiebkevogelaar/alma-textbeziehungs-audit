@@ -953,7 +953,16 @@ function render() {
   if (S.phase === "welcome")   card.appendChild(renderWelcome());
   if (S.phase === "questions") card.appendChild(renderQuestion());
   if (S.phase === "loading")   card.appendChild(renderLoading());
-  if (S.phase === "results")   card.appendChild(renderResults());
+  if (S.phase === "results") {
+    try {
+      card.appendChild(renderResults());
+    } catch(e) {
+      const errDiv = document.createElement("div");
+      errDiv.style.cssText = "padding:32px;font-family:Poppins,sans-serif;color:#c00;";
+      errDiv.textContent = "Darstellungsfehler: " + e.message;
+      card.appendChild(errDiv);
+    }
+  }
 }
 
 // ─── WELCOME ──────────────────────────────────────────────────────
@@ -1216,7 +1225,7 @@ function renderResults() {
 
   // Alma-HOOD secondary
   if (r.alma_hood_empfehlung && r.kategorie !== "alma_hood") {
-    const hoodBox = div("hood-box", { style: { marginTop: "12px" } });
+    const hoodBox = el("div", { className: "hood-box", style: { marginTop: "12px" } });
     const hoodTitle = div(""); hoodTitle.className = "hood-title"; hoodTitle.textContent = "Und wenn du bereit bist für mehr:";
     const hoodDesc = el("p", {}); hoodDesc.textContent = r.alma_hood_empfehlung;
     const hoodBtn = el("a", { href: PRODUCTS.alma_hood.url, target: "_blank", className: "product-btn", style: { background: "#254b34", fontSize: "12px" } });
