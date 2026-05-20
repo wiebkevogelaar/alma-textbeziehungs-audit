@@ -1002,13 +1002,11 @@ function renderWelcome() {
   const nameLabel = el("label", { className: "field-lbl" }); nameLabel.textContent = "Dein Vorname";
   const nameInput = el("input", { type: "text", className: "field", placeholder: "Wie heißt du?" });
   nameInput.value = S.name;
-  nameInput.addEventListener("input", () => { S.name = nameInput.value.trim(); startBtn.disabled = !S.name || !S.email; });
+  nameInput.addEventListener("input", () => { S.name = nameInput.value.trim(); startBtn.disabled = !S.name; });
 
-  // Email field
-  const emailLabel = el("label", { className: "field-lbl" }); emailLabel.textContent = "Deine E-Mail-Adresse";
-  const emailInput = el("input", { type: "email", className: "field", placeholder: "damit du deine Analyse auch per Mail erhältst" });
-  emailInput.value = S.email;
-  emailInput.addEventListener("input", () => { S.email = emailInput.value.trim(); startBtn.disabled = !S.name || !S.email; });
+  // Email field — deaktiviert bis Zapier eingerichtet ist
+  // const emailLabel = ...
+  S.email = "nicht erfasst"; // Platzhalter bis Zapier aktiv
 
   const startBtn = el("button", {
     className: "btn",
@@ -1016,12 +1014,10 @@ function renderWelcome() {
     onClick: () => { S.phase = "questions"; S.step = 0; render(); }
   });
   startBtn.textContent = "Audit starten →";
-  startBtn.disabled = !S.name || !S.email;
+  startBtn.disabled = !S.name;
 
   body.appendChild(nameLabel);
   body.appendChild(nameInput);
-  body.appendChild(emailLabel);
-  body.appendChild(emailInput);
   body.appendChild(startBtn);
 
   frag.appendChild(hdr);
@@ -1228,7 +1224,7 @@ function renderResults() {
         <!-- Mini-Kurs als #1 -->
         <p style="font-size:13px;color:#7a7a7a;margin-bottom:10px;font-style:italic;">Alle Alma Mater Mini-Kurse, wie dieser zur Textbeziehung, sind als Live-Workshops in der Alma-HOOD entstanden. Hier bekommst du deinen passenden Kurs kostenlos — als Vorgeschmack:</p>
         <div class="product-box" style="margin-bottom:16px;">
-          <div style="background:#472c4c;color:white;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:6px 6px 0 0;margin:-18px -20px 14px -20px;font-family:'Montserrat',sans-serif;font-weight:700;">Dein kostenloser Alma Mater Mini-Kurs</div>
+          <div style="background:#472c4c;color:white;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:6px 6px 0 0;margin:-18px -20px 14px -20px;font-family:'Montserrat',sans-serif;font-weight:700;">Mein Geschenk an dich</div>
           <div class="pname">${esc(product.name)}</div>
           <p>${esc(product.beschreibung)}</p>
           <p style="font-size:13px;color:#7a7a7a;margin-bottom:13px;">${esc(product.hood_kontext || "")}</p>
@@ -1240,7 +1236,7 @@ function renderResults() {
           <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#254b34;margin-bottom:10px;">Alma-HOOD — Deine digitale Schreibgemeinschaft</div>
           <p style="font-size:13px;line-height:1.7;margin-bottom:12px;">${esc(r.hood_pitch || "")}</p>
           <p style="font-size:13px;line-height:1.7;margin-bottom:12px;"><strong style="color:#254b34;">Hoodies</strong> — Zugang zum digitalen Coworking auf Gather mit care-sensiblen Timern, die Wiebkes Konzepte tragen, der Aufzeichnung des aktuellsten Workshops und Wiebkes Selbstlernkurs <em>Deep Work Essentials</em> — einer ausführlichen Anleitung zu care-sensiblen Fokusstrategien.</p>
-          <p style="font-size:13px;line-height:1.7;margin-bottom:14px;"><strong style="color:#254b34;">Almas</strong> — Alles der Hoodies plus monatliche Live-Workshops, eine wachsende Mediathek aus Mini-Kursen, Big Rocks Treffen, Q&As und eine Signal-Gruppe für Fragen jederzeit.</p>
+          <p style="font-size:13px;line-height:1.7;margin-bottom:14px;"><strong style="color:#254b34;">Almas</strong> — Die engere Gemeinschaft mit direktem Zugang zu mir: monatliche Live-Workshops, in denen wir gemeinsam in die Tiefe gehen, Big Rocks Treffen um deine wichtigsten Projekte auf die Spur zu bringen, Live-Q&As, eine wachsende Mediathek aus Mini-Kursen und eine Signal-Gruppe in der du jederzeit Fragen stellen kannst. Kein Warten auf den nächsten Termin — echte Begleitung, die sich anfühlt wie eine Gemeinschaft, die dich kennt.</p>
           <p style="font-size:12px;color:#254b34;font-weight:600;margin-bottom:13px;">Ab 1. Juni gibt es wieder freie Plätze — melde dich jetzt unverbindlich auf die Warteliste.</p>
           <a href="https://alma-mater.myflodesk.com/alma-hood-2026" target="_blank" rel="noopener noreferrer" class="product-btn" style="background:#254b34;">Auf die Warteliste — Platz sichern →</a>
         </div>
