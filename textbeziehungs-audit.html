@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Textbeziehungs-Audit · Alma Mater</title>
+<title>Alma-Audit · Alma Mater</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
@@ -497,53 +497,61 @@ const API_KEY = new URLSearchParams(window.location.search).get("k") || "";
 
 // ─── PRODUCTS ────────────────────────────────────────────────────
 const PRODUCTS = {
-  dwe: {
-    name: "Deep Work Essentials",
-    beschreibung: "Der Kurs, der dich von \"ich weiß, was Deep Work ist\" zu \"ich mache es wirklich\" bringt — mit einem care-sensiblen System, das zu deinem Leben passt.",
-    cta: "Zum Deep Work Essentials Kurs →",
-    url: "https://www.schreibcoaching-fuer-mamas.de/course/deep-work-essentials",
-  },
   textbeziehung: {
     name: "Mini-Kurs: Textbeziehung",
     beschreibung: "Du lernst, wie du wieder eine lebendige, vertrauensvolle Verbindung zu deinem Schreib-Ich aufbaust — auch nach langen Pausen, Erschöpfung oder Muttertät.",
-    cta: "Zum Mini-Kurs Textbeziehung →",
-    url: "https://www.schreibcoaching-fuer-mamas.de/minikurs-textbeziehung",
+    cta: "Jetzt kostenlos freischalten →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/cart?product_id=textbeziehung&type=course&packageId=package_69947de4a4c8e",
+    hood_kontext: "Die Textbeziehung ist das Herzstück der Alma-HOOD. Im gemeinsamen Coworking und in der Gemeinschaft gleichgesinnter Mütter* in der Wissenschaft wächst die Verbindung zu deinem Schreib-Ich ganz organisch — jeden Tag ein bisschen mehr. Sie zieht sich durch alles, was wir dort gemeinsam tun.",
   },
   mental_load: {
     name: "Mini-Kurs: Mental & Emotional Load",
-    beschreibung: "Du verstehst, warum dein Kopf nie aufhört — und bekommst konkrete Strategien, um den mentalen Dauerbetrieb zu unterbrechen.",
-    cta: "Zum Mini-Kurs Mental & Emotional Load →",
-    url: "https://www.schreibcoaching-fuer-mamas.de/minikurs-mental-emotional-load",
+    beschreibung: "Du verstehst, warum dein Kopf nie aufhört — und bekommst konkrete Strategien, um den mentalen Dauerbetrieb zu unterbrechen und echte Schreibfenster zu öffnen.",
+    cta: "Jetzt kostenlos freischalten →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/cart?product_id=mental-emotional-load&type=course&packageId=package_69947de4a488a",
+    hood_kontext: "In der Alma-HOOD bist du unter Müttern* in der Wissenschaft, die deinen Alltag kennen. Hier musst du dich nicht erklären, nicht entschuldigen, nicht so tun als wäre es anders. Care-sensibles Deep Work ist kein Kompromiss, sondern der Ausgangspunkt — für alles.",
   },
   muttertaet: {
     name: "Mini-Kurs: Muttertät verstehen",
     beschreibung: "Du bekommst einen feministischen Rahmen für das, was mit dir passiert ist — und verstehst, warum Wissenschaft und Muttertät so oft in Konflikt geraten.",
-    cta: "Zum Mini-Kurs Muttertät →",
-    url: "https://www.schreibcoaching-fuer-mamas.de/minikurs-muttertaet",
+    cta: "Jetzt kostenlos freischalten →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/cart?product_id=muttertaet&type=course&packageId=package_69947de4a408f",
+    hood_kontext: "Wie beim Mental & Emotional Load gilt: In der Alma-HOOD bist du unter Müttern*, die deinen Spagat aus eigenem Erleben kennen. Die klare Struktur und das gemeinsame Coworking unterstützen die Konzentrationsrückbildung — nicht als Ausnahme, sondern als selbstverständlicher Standard.",
   },
   big_rocks: {
     name: "Mini-Kurs: Planen mit Big Rocks",
     beschreibung: "Du lernst, das Wichtigste wirklich zuerst zu planen — und hörst auf, Schreiben auf den Moment zu verschieben, in dem alle anderen Aufgaben erledigt sind.",
-    cta: "Zum Mini-Kurs Big Rocks →",
-    url: "https://www.schreibcoaching-fuer-mamas.de/minikurs-big-rocks",
+    cta: "Jetzt kostenlos freischalten →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/cart?product_id=big-rocks&type=course&packageId=package_69947de4a4220",
+    hood_kontext: "In der Alma-HOOD leben wir die Big Rocks Methode — besonders im Inner Circle, wo wir jeden Monat gemeinsam unsere wichtigsten Projekte priorisieren und verfolgen. Die gesamte Deep Work Infrastruktur der HOOD ist darauf ausgelegt, genau diese Big Rocks konsequent in die Tat umzusetzen.",
+  },
+  rueckzug: {
+    name: "Mini-Kurs: Rückzug gestalten",
+    beschreibung: "Du lernst, wie Retreats und Staytreats deine Konzentration, deine Routinen und deine Textbeziehung nachhaltig stärken — und wie du sie so planst, dass sie dich wirklich nähren.",
+    cta: "Jetzt kostenlos freischalten →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/cart?product_id=schreib-retreats&type=course&packageId=package_69947de4a4703",
+    hood_kontext: "In der Alma-HOOD ist jeder Tag ein kleiner Rückzug: Die digitale Welt in Gather schafft einen eigenen Raum — auch wenn du zuhause, im Büro oder in der Bibliothek sitzt. Die Struktur lädt zum Abtauchen ein. Und regelmäßige Staytreats machen aus einzelnen Momenten echte Regenerationsphasen.",
   },
   zyklus: {
     name: "Mini-Kurs: Zyklusbewusstes Schreiben",
     beschreibung: "Du lernst, deinen Zyklus als Ressource zu nutzen — und planst Schreib- und Ruhephasen so, dass sie zu deiner körperlichen Energie passen.",
-    cta: "Zum Mini-Kurs Zyklusbewusstes Schreiben →",
-    url: "https://www.schreibcoaching-fuer-mamas.de/minikurs-zyklus",
+    cta: "Jetzt kostenlos freischalten →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/cart?product_id=zyklusbewusst&type=course&packageId=package_69947de4a43a4",
+    hood_kontext: "Die Rhythmen der Alma-HOOD — die synchronisierten Timer, die regelmäßigen Events, die Gemeinschaft — helfen dir, auch in herausfordernden Zyklusphasen dranzubleiben. Nicht durch Disziplin, sondern durch verlässliche Struktur und Menschen, die verstehen.",
   },
-  alma_hood: {
-    name: "Alma-HOOD — Inner Circle Community",
-    beschreibung: "Coworking-Räume mit synchronisierten Deep Work Timern, Deep Work Essentials inklusive, Workshop-Bibliothek und offene Sprechstunden. Der Ort wo Schreiben nicht alleine passiert.",
-    cta: "Zur Alma-HOOD →",
-    url: "https://www.schreibcoaching-fuer-mamas.de/alma-hood-coworking",
+  ki: {
+    name: "Mini-Kurs: KI als Forschungsassistenz",
+    beschreibung: "Du lernst, wie du KI-Tools gezielt in deiner wissenschaftlichen Arbeit einsetzt — und entdeckst ALMA, die speziell für Mütter* in der Wissenschaft entwickelte KI-Schreibbegleiterin.",
+    cta: "Jetzt kostenlos freischalten →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/cart?product_id=chatgpt&type=course&packageId=package_69947de4a3f0b",
+    hood_kontext: "In der Alma-HOOD triffst du eine Community, die KI in der Wissenschaft gemeinsam erkundet — und du bekommst Zugang zu ALMA: einer speziell trainierten Schreibbegleiterin, die Wiebkes Framework kennt und dich als Custom GPT oder Claude Skill jederzeit begleiten kann.",
   },
   collection: {
-    name: "Die Minis-Collection",
-    beschreibung: "Deine Situation hat viele Facetten — die gebündelte Collection macht am meisten Sinn. Alle Ressourcen von Textbeziehung bis Mental Load.",
-    cta: "Zur Minis-Collection →",
-    url: "https://www.schreibcoaching-fuer-mamas.de/mini-kurse",
+    name: "Mini-Kurs: Textbeziehung",
+    beschreibung: "Als Einstieg empfehle ich dir den Mini-Kurs Textbeziehung — er greift das Kernthema auf, das sich durch deine Antworten zieht, und gibt dir sofort anwendbare Impulse.",
+    cta: "Jetzt kostenlos freischalten →",
+    url: "https://www.schreibcoaching-fuer-mamas.de/cart?product_id=textbeziehung&type=course&packageId=package_69947de4a4c8e",
+    hood_kontext: "Die Textbeziehung ist das Herzstück der Alma-HOOD. Im gemeinsamen Coworking und in der Gemeinschaft gleichgesinnter Mütter* wächst die Verbindung zu deinem Schreib-Ich jeden Tag ein bisschen mehr.",
   },
 };
 
@@ -560,9 +568,75 @@ const SECTIONS = [
   { label: "Einstieg", color: "#472c4c" },
   { label: "Dein Schreibprojekt", color: "#472c4c" },
   { label: "Deine Textbeziehung", color: "#472c4c" },
-  { label: "Deine Care-Situation", color: "#254b34" },
+  { label: "Deine Care-Situation", color: "#472c4c" },
   { label: "Deep Work & Fokus", color: "#254b34" },
   { label: "Abschluss", color: "#472c4c" },
+];
+
+const Q = [
+  { id:"vorher", s:0, num:"01", text:"Wie geht es dir gerade?", hint:"Gib uns einen ehrlichen Einstieg.", type:"gefuehl" },
+  { id:"projekt", s:1, num:"02", text:"Woran arbeitest du gerade — und in welcher Phase bist du?", hint:"Projekttyp, Thema, wo du gerade wirklich stehst.", type:"ta", rows:3, max:400, ph:"z.B. \"Dritte Jahr Dissertation, gerade an Kapitel 3 — eigentlich müsste ich weiter sein...\"" },
+  { id:"warum_arbeit", s:1, num:"03", text:"Welchen Wert hat deine wissenschaftliche Arbeit für dich persönlich?", hint:"Nicht die Pflicht — sondern was daran wirklich zählt.", type:"ta", rows:3, max:300, ph:"Was treibt dich wirklich an? Was würde fehlen, wenn du aufhörst?" },
+  { id:"deadline", s:1, num:"04", text:"Hast du eine Deadline — und wie fühlst du dich damit?", hint:"Datum optional. Das Gefühl ist das Wichtigere.", type:"deadline" },
+  { id:"warum_jetzt", s:1, num:"05", text:"Warum hast du dich gerade jetzt für diesen Audit entschieden?", hint:"Was hat den Ausschlag gegeben?", type:"ta", rows:3, max:300, ph:"Was hat dich hierher gebracht?" },
+  { id:"tb_skala", s:2, num:"06", text:"Als wie stark schätzt du deine aktuelle Textbeziehung ein?", hint:"Die Verbindung zu deinem Schreib-Ich — zu deinen Ideen, deiner wissenschaftlichen Stimme.", type:"scale", min:1, max:5, labs:["Sehr schwach","Sehr stark"] },
+  { id:"tb_beschreibung", s:2, num:"07", text:"Wie fühlt sich deine Textbeziehung gerade an?", hint:"Ein Bild, ein Satz, ein Gefühl. Kein perfekter Text nötig.", type:"ta", rows:4, max:400, ph:"z.B. \"Wir haben uns ein bisschen fremd geworden\"" },
+  { id:"tb_wunsch", s:2, num:"08", text:"Wie möchtest du, dass sie sich anfühlt?", hint:"Wenn du dir das frei wünschen könntest.", type:"ta", rows:3, max:300, ph:"Dein Wunschbild..." },
+  { id:"tb_veraenderung", s:2, num:"09", text:"Was würde sich in deinem Leben ändern, wenn deine Textbeziehung gesund wäre?", hint:"Konkret — was wäre anders?", type:"ta", rows:3, max:300, ph:"Was wäre möglich?" },
+  { id:"care_kinder", s:3, num:"10", text:"Wie viele Kinder hast du — und wie alt sind sie?", hint:"Grob reicht.", type:"ta", rows:2, max:300, ph:"z.B. \"Zwei Kinder, 2 und 5 Jahre...\"" },
+  { id:"care_aufgaben", s:3, num:"11", text:"Welche Care-Aufgaben übernimmst überwiegend du?", hint:"Denk auch an die kognitiven und emotionalen: Arzttermine koordinieren, an Geburtstage denken, die Stimmung des Haushalts regulieren...", type:"ta", rows:4, max:400, ph:"Aktive, kognitive und emotionale Aufgaben..." },
+  { id:"care_energie", s:3, num:"12", text:"Welche Care-Momente kosten dich am meisten Energie — und welche geben dir welche zurück?", hint:"Beides ist wichtig.", type:"ta", rows:4, max:400, ph:"Kostet: ... / Gibt: ..." },
+  { id:"care_rueckzug", s:3, num:"13", text:"Hast du regelmäßig wirklich ungestörte Zeit nur für dich?", hint:"Nicht Schreibzeit — Zeit ohne Verfügbarkeitserwartung.", type:"radio", opts:[
+    { v:"ja_regelmaessig", l:"Ja, regelmäßig und verlässlich" },
+    { v:"manchmal", l:"Manchmal — aber nicht verlässlich" },
+    { v:"selten", l:"Selten — meistens bin ich \"gleich wieder da\"" },
+    { v:"kaum", l:"Kaum oder nie" },
+  ]},
+  { id:"abgrenzung", s:3, num:"14", text:"Wovon möchtest du dich mehr abgrenzen?", hint:"Von Menschen, Erwartungen, Aufgaben, Verfügbarkeiten — was auch immer.", type:"ta", rows:3, max:300, ph:"Was zieht zu viel von deiner Energie?" },
+  { id:"faktoren", s:3, num:"15", text:"Welche dieser Faktoren spürst du am stärksten in deinem Alltag?", hint:"Wähle die drei, die am meisten zutreffen.", type:"multi3", opts:[
+    { v:"erschoepfung", l:"Erschöpfung" },
+    { v:"fremdbestimmung", l:"Fremdbestimmung" },
+    { v:"verfuegbarkeit", l:"Ständige Verfügbarkeit" },
+    { v:"unsicherheit", l:"Unsicherheit" },
+    { v:"schuldgefuehle", l:"Schuldgefühle / Scham" },
+  ]},
+  { id:"sw_mutter", s:3, num:"16", text:"Als wie hoch schätzt du deine Selbstwirksamkeit als Mutter* gerade ein?", hint:"Wie sehr vertraust du darauf, dass du als Mutter* das Richtige tust und kannst?", type:"scale", min:1, max:10, labs:["Sehr niedrig","Sehr hoch"] },
+  { id:"sw_wissenschaft", s:3, num:"17", text:"Als wie hoch schätzt du deine Selbstwirksamkeit als Wissenschaftler*in gerade ein?", hint:"Wie sehr vertraust du darauf, dass du deine wissenschaftliche Arbeit wirklich voranbringen kannst?", type:"scale", min:1, max:10, labs:["Sehr niedrig","Sehr hoch"] },
+  { id:"zyklus", s:3, num:"18", text:"Falls du menstruierst — wie stark beeinflusst dein Zyklus dein Schreiben?", hint:"Wenn das bei dir kein Thema ist, kannst du diese Frage einfach überspringen.", type:"scale_optional", min:1, max:5, labs:["Kaum spürbar","Sehr stark"] },
+  { id:"dw_zeiten", s:4, num:"19", text:"Zu welchen Tageszeiten bist du am leistungsfähigsten?", hint:"Nicht was gerade möglich ist — dein ideales Zeitfenster.", type:"multi", opts:[
+    { v:"frueh", l:"Früh morgens (vor 7 Uhr)" },
+    { v:"morgens", l:"Morgens (7–10 Uhr)" },
+    { v:"vormittags", l:"Vormittags (10–12 Uhr)" },
+    { v:"nachmittags", l:"Nachmittags (13–17 Uhr)" },
+    { v:"abends", l:"Abends (17–20 Uhr)" },
+    { v:"spaet", l:"Spät abends / nachts" },
+  ]},
+  { id:"dw_ort", s:4, num:"20", text:"Wo arbeitest du am liebsten und am besten?", hint:"Physisch oder digital — was gibt dir Energie zum Schreiben?", type:"ta", rows:2, max:300, ph:"z.B. \"Zuhause am Schreibtisch wenn es ruhig ist\" oder \"Am liebsten in der Bibliothek\"" },
+  { id:"dw_konzentration", s:4, num:"21", text:"Wie gut kannst du dich konzentrieren, wenn du wirklich ungestört Zeit hast?", hint:"Nicht wie oft du Zeit hast — sondern wie tief du kommst, wenn du sie hast.", type:"scale", min:1, max:5, labs:["Gar nicht","Sehr tief"] },
+  { id:"dw_dauer", s:4, num:"22", text:"Wie lange kannst du gerade am Stück wirklich konzentriert arbeiten?", hint:"Ehrlich — ohne aufzugeben oder abgelenkt zu werden.", type:"radio", opts:[
+    { v:"unter20", l:"Unter 20 Minuten" },
+    { v:"20bis45", l:"20–45 Minuten" },
+    { v:"45bis90", l:"45–90 Minuten" },
+    { v:"ueber90", l:"Über 90 Minuten am Stück" },
+  ]},
+  { id:"dw_tools_fokus", s:4, num:"23", text:"Nutzt du bereits Strategien oder Tools für deine Fokuszeit?", hint:"Timer, Musik, feste Zeiten, Rituale — was auch immer.", type:"ta", rows:2, max:300, ph:"z.B. \"Manchmal Timer, aber nicht konsequent\" oder \"Noch gar nichts\"" },
+  { id:"dw_tools_planung", s:4, num:"24", text:"Und wie planst du deine Aufgaben — hast du ein System dafür?", hint:"Wie weißt du, woran du als nächstes arbeitest?", type:"ta", rows:2, max:300, ph:"z.B. \"To-do-Liste, aber die wächst unkontrolliert\" oder \"Kein festes System\"" },
+  { id:"ki_interesse", s:4, num:"25", text:"Nutzt du bereits KI in deiner Forschung — oder interessiert dich das?", hint:"Ganz offen gemeint.", type:"radio", opts:[
+    { v:"ja_aktiv", l:"Ja, ich nutze KI-Tools bereits aktiv" },
+    { v:"ja_interesse", l:"Ich habe Interesse, aber noch wenig Erfahrung" },
+    { v:"nein_offen", l:"Noch nicht — aber offen dafür" },
+    { v:"nein_skeptisch", l:"Eher nicht — ich bin skeptisch" },
+  ]},
+  { id:"fokuszeit_realistisch", s:4, num:"26", text:"Wie viel Fokuszeit hast du realistisch in den nächsten drei Wochen?", hint:"Nicht was du dir wünschst — was wirklich da ist.", type:"radio", cols:2, opts:[
+    { v:"unter2h", l:"Unter 2 Stunden/Woche" },
+    { v:"2bis5h", l:"2–5 Stunden/Woche" },
+    { v:"5bis10h", l:"5–10 Stunden/Woche" },
+    { v:"ueber10h", l:"Über 10 Stunden/Woche" },
+  ]},
+  { id:"fokuszeit_planung", s:4, num:"27", text:"Stell dir vor, du hast 90 Minuten Fokuszeit eingeplant. Was musst du organisieren, damit diese dir wirklich gehören?", hint:"Kinderbetreuung, Partner*in, Kollegen, innere Stimmen — was auch immer im Weg steht.", type:"ta", rows:4, max:400, ph:"Was braucht es, damit diese 90 Minuten wirklich dir gehören?" },
+  { id:"dw_wunsch", s:4, num:"28", text:"Wovon wünschst du dir mehr in deinem Schreiballtag — und wovon weniger?", hint:"Beide Seiten zählen.", type:"ta", rows:4, max:400, ph:"Mehr: ... / Weniger: ..." },
+  { id:"schreibfee", s:5, num:"29", text:"Wenn dir die Schreibfee heute Nacht eine neue Fähigkeit bringen dürfte — welche wäre das?", hint:"Was wäre das größte Geschenk für dein Schreiben?", type:"ta", rows:3, max:300, ph:"Alles ist erlaubt." },
+  { id:"nachher", s:5, num:"30", text:"Und — wie geht es dir jetzt, nachdem du all das in Worte gefasst hast?", hint:"Der Bogen schließt sich.", type:"gefuehl" },
 ];
 
 const Q = [
@@ -628,69 +702,61 @@ const Q = [
 ];
 
 // ─── SYSTEM PROMPT ───────────────────────────────────────────────
-const SYSTEM = `Du bist ALMA, die systemische KI-Schreibbegleiterin von Dr. Wiebke Vogelaar (Alma Mater Schreibcoaching). Du analysierst den Textbeziehungs-Audit einer Wissenschaftlerin mit Care-Verantwortung und erstellst eine substantielle, wirklich hilfreiche Analyse.
+const SYSTEM = `Du bist ALMA, die systemische KI-Schreibbegleiterin von Dr. Wiebke Vogelaar (Alma Mater Schreibcoaching). Du analysierst den Alma-Audit einer Wissenschaftlerin mit Care-Verantwortung und erstellst eine substantielle, wirklich hilfreiche Analyse.
 
 KERNKONZEPTE:
 - Textbeziehung: Emotionale Verbindung zum Schreib-Ich. Drei Vertrauensebenen: in eigene Fähigkeiten, in den Schreibprozess, in begleitende Menschen.
-- Care Concentration Gap (CCG): Strukturell weniger Deep Work durch Sorgearbeit. Konzentration braucht Rückzug — Sorgearbeit erschwert Rückzug.
+- Care Concentration Gap (CCG): Strukturell weniger Deep Work durch Sorgearbeit.
 - Drei Sorgearbeitstypen: Aktive (orts-/zeitgebunden), Kognitive (Mental Load = kommt mit an den Schreibtisch), Emotionale (Emotional Load = kommt mit an den Schreibtisch).
-- Fürsorgedefizit: Mütter* leisten viel, bekommen wenig zurück.
-- Dauerverfügbarkeit: Das eigentliche Strukturproblem, nicht fehlende Disziplin.
-- Erschöpfungsblockade: Körper und Geist sagen Nein — kein Willensproblem.
-- Erholungsprokrastination: Erholungsbedürfnis drückt sich als Vermeidung aus.
-- Academic Mom Guilt: Gleichzeitiges Versagengefühl in Wissenschaft und Mutterschaft.
-- Konzentrationsrückbildung: Nach Geburt strukturell schwerer zu konzentrieren — normal und umkehrbar.
+- Fürsorgedefizit, Dauerverfügbarkeit, Erschöpfungsblockade, Erholungsprokrastination, Academic Mom Guilt, Konzentrationsrückbildung.
+- WARUM (persönlicher Wert der Arbeit) ist das Fundament für alles — immer aufgreifen.
 
-DEEP WORK MODELLE:
-- Rhythmisch: Täglich feste kleine Zeitfenster (45-90 min). Ideal als Einstieg.
-- Bimodal: Ganze Tage oder mehrtägige Phasen. Braucht gute Unterstützung.
-- Journalistisch: Flexible Kurzblocks — nur für Geübte.
-- Mix: Rhythmisch + bimodal = oft realistischste Lösung für Mütter*.
+DEEP WORK MODELLE & BEREITSCHAFT:
+- Rhythmisch: täglich 45-90 min. Ideal als Einstieg.
+- Bimodal: ganze Tage/Phasen. Braucht gute Unterstützung zu Hause.
+- Journalistisch: flexible Kurzblocks — nur für Geübte.
+- HOCH: Konzentration 4-5/5, Dauer 45+min → Bimodal oder Mix
+- MITTEL: Konzentration 3/5, Dauer 20-45min → Rhythmisch
+- AUFBAU: Konzentration 1-2/5 → erst Grundlagen angehen
 
-DEEP WORK BEREITSCHAFT:
-- HOCH: Konzentration 4-5/5, Dauer 45+min, etwas Struktur → Bimodal oder Mix, DWE empfehlen
-- MITTEL: Konzentration 3/5, Dauer 20-45min → Rhythmisch, DWE als Aufbau
-- AUFBAU: Konzentration 1-2/5, Dauer unter 20min → erst Textbeziehung/Erschöpfung angehen
+POMODORO: Nicht einfach spiegeln. Pausen sind das Luftholen beim Auftauchen — aber NICHT in Verfügbarkeit wechseln. Alma-Timer und Alma-HOOD helfen dabei.
 
-POMODORO-NUANCIERUNG: Wenn Pomodoro erwähnt oder abgelehnt: nicht einfach spiegeln. Erklären dass Pausen beim Deep Work wichtig sind — das Luftholen beim Auftauchen. Herausforderung für Mütter*: in Pausen NICHT in Verfügbarkeit wechseln. Der Alma-Timer hilft dabei. Die Alma-HOOD schafft soziale Verbindlichkeit.
+SPRACHREGELN: NIEMALS "einfach" + "schreiben" kombinieren. Keine Floskeln. Konkret auf diese Person eingehen.
 
-SPRACHREGELN (absolut bindend):
-- NIEMALS "einfach" und "schreiben" in einem Satz kombinieren.
-- Keine generischen Motivationsfloskeln.
-- Immer konkret auf diese Person eingehen.
+SCHREIBFEE: Antwort warm aufgreifen + "Was würde sich ändern wenn die Fee das brächte?" + 15-min Freewriting-Einladung + Verweis auf Mini-Kurs Textbeziehung.
 
-SCHREIBFEE: Nicht nur spiegeln. Immer: Was würde sich ändern wenn die Fee das brächte? + Einladung zum 15-min Freewriting + Hinweis auf Mini-Kurs Textbeziehung.
+WO-DIMENSION: Den beschriebenen Deep Work Ort aufgreifen und konkret darauf eingehen — auch digitale Orte wie die Alma-HOOD erwähnen.
 
-PRODUKTKATEGORIEN:
-- dwe: Bereitschaft hoch/mittel + Hauptproblem fehlende Deep Work Struktur
-- textbeziehung: Gestörte Textbeziehung als Hauptthema
-- mental_load: Mental/Emotional Load dominiert
-- muttertaet: Academic Mom Guilt, Identitätskonflikt
-- big_rocks: Fehlende Planung, Fremdbestimmung
-- zyklus: Zyklusbewusstsein relevant
-- alma_hood: Community + Struktur + Verbindlichkeit als Hauptbedürfnis
-- collection: Mehrere gleichwertige Problemfelder
+PRODUKTKATEGORIEN — wähle genau eine:
+- "textbeziehung": tb_skala 1-2 ODER starke Entfremdung vom Text
+- "mental_load": Erschöpfung + Verfügbarkeit dominant, kognitiver/emotionaler Dauerbetrieb
+- "muttertaet": Schuldgefühle dominieren, große Schere sw_mutter vs sw_wissenschaft, Identitätskonflikt
+- "big_rocks": Fremdbestimmung dominant + kein Aufgabenplanungssystem (dw_tools_planung zeigt keine Struktur)
+- "rueckzug": Bimodale Bereitschaft (Konzentration 4-5, Dauer 45+) UND care_rueckzug ist "ja_regelmaessig" oder "manchmal" UND care-Situation lässt mehrtägige Rückzüge realistisch erscheinen (NICHT wenn alleinerziehend oder Partner trägt kaum Sorgearbeit)
+- "zyklus": zyklus-Skala 4-5 UND kein anderes Thema dominiert stärker — seltenste Empfehlung
+- "ki": ki_interesse ist "ja_aktiv" oder "ja_interesse" UND (KI als Thema in anderen Antworten sichtbar ODER Wunsch nach mehr Coaching-Unterstützung)
+- "collection": mehrere gleichwertige Problemfelder, keine klare Dominanz
 
 AUSGABE — NUR dieses JSON, kein Text darum:
 {
   "vorher": [Zahl 1-5],
   "nachher": [Zahl 1-5],
-  "einleitung": "2-3 Sätze, warm und konkret auf ihre Antworten bezogen.",
+  "einleitung": "2-3 Sätze, warm, konkret auf ihre Antworten. Gerne das persönliche Warum aus Frage 03 aufgreifen.",
   "textbeziehung_analyse": "3-4 Sätze: aktuelle Textbeziehung + Wunsch + was sich ändern würde.",
-  "care_dynamik": "3-4 Sätze: Sorgearbeitstypen, Dauerverfügbarkeit, Abgrenzungsbedarf, was die 90-Minuten-Planungsfrage zeigt.",
+  "care_dynamik": "3-4 Sätze: Sorgearbeitstypen, Dauerverfügbarkeit, was die 90-Min-Planungsfrage und Abgrenzungsfrage zeigen.",
   "selbstwirksamkeit_einblick": "2-3 Sätze: Schere zwischen Mutter* und Wissenschaftlerin benennen.",
   "hauptmuster": { "name": "Wiebkes Begriff", "erklaerung": "2-3 Sätze konkret auf sie bezogen." },
   "deep_work": {
     "bereitschaft": "hoch|mittel|aufbau",
     "modell": "Rhythmisch|Bimodal|Journalistisch|Mix Rhythmisch+Bimodal",
-    "modell_begruendung": "2-3 Sätze mit Bezug auf ihre Tageszeiten und Fokuszeit-Antworten.",
+    "modell_begruendung": "2-3 Sätze mit Bezug auf Tageszeiten, Ort, Fokuszeit und Care-Situation.",
     "erste_schritte": "2-3 konkrete erste Schritte als Fließtext."
   },
-  "mikro_tipp": "1 konkreter Tipp den sie heute noch ausprobieren kann.",
-  "schreibfee": "2-3 Sätze: Antwort aufgreifen + Was würde sich ändern? + Freewriting-Einladung + Textbeziehungs-Kurs.",
-  "kategorie": "dwe|textbeziehung|mental_load|muttertaet|big_rocks|zyklus|alma_hood|collection",
-  "naechster_schritt": "2-3 Sätze warum dieses Produkt jetzt passt.",
-  "alma_hood_empfehlung": "1-2 Sätze Alma-HOOD als zweite Empfehlung (DWE inklusive, Community, Timer erwähnen)."
+  "mikro_tipp": "1 konkreter Tipp für heute.",
+  "schreibfee": "2-3 Sätze: aufgreifen + Was würde sich ändern? + Freewriting + Mini-Kurs Textbeziehung.",
+  "kategorie": "textbeziehung|mental_load|muttertaet|big_rocks|rueckzug|zyklus|ki|collection",
+  "naechster_schritt": "2-3 Sätze warum dieses Produkt jetzt passt. Bei KI: ALMA als Custom GPT und Claude Skill erwähnen.",
+  "hood_pitch": "3-4 Sätze: Alma-HOOD als Heimat für alles was hier angesprochen wurde. Erwähnen dass alle Mini-Kurse dort als Live-Workshops entstanden sind und es dort jeden Monat neue gibt. Deep Work Essentials Kurs inklusive. Behutsam und einladend — keine Werbung."
 }`;
 
 // ─── STATE ───────────────────────────────────────────────────────
@@ -710,7 +776,9 @@ function getVal(id) { return S.answers[id]; }
 
 function canAdvance(q) {
   const v = getVal(q.id);
-  if (!q || !v) return false;
+  if (!q) return false;
+  if (q.type === "scale_optional") return true; // always skippable
+  if (!v) return false;
   if (q.type === "gefuehl" || q.type === "scale" || q.type === "radio") return !!v;
   if (q.type === "ta") return (v || "").trim().length > 0;
   if (q.type === "multi3") return (v || []).length > 0;
@@ -971,13 +1039,13 @@ function renderWelcome() {
 
   const hdr = div("hdr");
   const eyebrow = div("eyebrow"); eyebrow.textContent = "Alma Mater Schreibcoaching";
-  const h1 = el("h1", {}); h1.textContent = "Dein Textbeziehungs-Audit";
+  const h1 = el("h1", {}); h1.textContent = "Dein Alma-Audit";
   const sub = el("p", {}); sub.textContent = "Eine tiefe, persönliche Analyse deiner Textbeziehung, deiner Care-Situation und deiner Deep Work Möglichkeiten.";
   hdr.appendChild(eyebrow); hdr.appendChild(h1); hdr.appendChild(sub);
 
   const body = div("welcome-body");
   const p1 = el("p", {}); p1.textContent = "Du bekommst eine substantielle Einschätzung — keine allgemeinen Tipps, sondern eine Analyse, die wirklich zu deiner Situation passt.";
-  const pill = div("pill"); pill.textContent = "⏱ Ca. 15 Minuten · 26 Fragen in 5 Blöcken";
+  const pill = div("pill"); pill.textContent = "⏱ Ca. 10–20 Minuten · 30 Fragen in 5 Blöcken";
 
   body.appendChild(p1);
   body.appendChild(pill);
@@ -1044,6 +1112,7 @@ function renderQuestion() {
   // Render question input
   if (q.type === "gefuehl") body.appendChild(renderGefuehl(q));
   else if (q.type === "scale") body.appendChild(renderScale(q));
+  else if (q.type === "scale_optional") body.appendChild(renderScale(q));
   else if (q.type === "radio") body.appendChild(renderRadio(q));
   else if (q.type === "multi3") body.appendChild(renderMulti(q, 3));
   else if (q.type === "multi") body.appendChild(renderMulti(q, null));
@@ -1154,13 +1223,13 @@ function renderResults() {
     <div style="background:#eaf2ed;border-radius:12px;padding:16px 18px;margin-top:12px;">
       <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#254b34;margin-bottom:6px;">Und wenn du bereit bist für mehr:</div>
       <p style="font-size:13px;line-height:1.65;margin-bottom:12px;">${esc(r.alma_hood_empfehlung)}</p>
-      <a href="${PRODUCTS.alma_hood.url}" target="_blank" class="product-btn" style="background:#254b34;font-size:12px;">${esc(PRODUCTS.alma_hood.cta)}</a>
+      <a href="https://alma-mater.myflodesk.com/alma-hood-2026" target="_blank" class="product-btn" style="background:#254b34;font-size:12px;">Auf die Warteliste →</a>
     </div>` : "";
 
   const container = document.createElement("div");
   container.innerHTML = `
     <div class="hdr green">
-      <div class="eyebrow">Dein Textbeziehungs-Audit · Alma Mater</div>
+      <div class="eyebrow">Dein Alma-Audit · Alma Mater</div>
       <h1>Hallo ${esc(S.name)} — hier ist deine persönliche Analyse.</h1>
     </div>
     <div class="res-body">
@@ -1205,14 +1274,31 @@ function renderResults() {
       <div class="divider"></div>
 
       <div class="res-section">
-        <div class="res-label">Dein nächster Schritt</div>
+        <div class="res-label">Deine nächsten Schritte</div>
         <p style="margin-bottom:14px;">${esc(r.naechster_schritt)}</p>
+
+        <div style="border:2px solid #254b34;border-radius:12px;padding:18px 20px;background:#eaf2ed;margin-bottom:12px;">
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#254b34;margin-bottom:7px;">Alma-HOOD — Inner Circle Community</div>
+          <p style="font-size:13px;line-height:1.65;margin-bottom:10px;">${esc(r.hood_pitch || "")}</p>
+          <p style="font-size:13px;line-height:1.65;color:#2d2d2d;margin-bottom:13px;">${esc(product.hood_kontext || "")}</p>
+          <a href="https://alma-mater.myflodesk.com/alma-hood-2026" target="_blank" rel="noopener noreferrer" class="product-btn" style="background:#254b34;">Auf die Warteliste — sichere dir deinen Platz →</a>
+        </div>
+
+        <p style="font-size:13px;color:#7a7a7a;margin-bottom:10px;font-style:italic;">Dieser Workshop ist in der Alma-HOOD entstanden — hier ein Vorgeschmack für dich, kostenlos:</p>
         <div class="product-box">
+          <div style="background:#472c4c;color:white;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:6px 6px 0 0;margin:-18px -20px 14px -20px;font-family:'Montserrat',sans-serif;font-weight:700;">Dein kostenloser Mini-Kurs</div>
           <div class="pname">${esc(product.name)}</div>
           <p>${esc(product.beschreibung)}</p>
-          <a href="${product.url}" target="_blank" class="product-btn">${esc(product.cta)}</a>
+          <div style="background:white;border:2px dashed #d1b400;border-radius:8px;padding:10px 14px;margin-bottom:13px;display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-size:12px;color:#7a7a7a;">Dein Gutscheincode:</span>
+            <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:#472c4c;letter-spacing:2px;">AUDIT</span>
+          </div>
+          <a href="${product.url}" target="_blank" rel="noopener noreferrer" class="product-btn">${esc(product.cta)}</a>
         </div>
-        ${hoodHtml}
+      </div>
+
+      <div style="text-align:center;margin-top:20px;margin-bottom:8px;">
+        <button onclick="window.print()" style="background:none;border:2px solid #472c4c;color:#472c4c;padding:10px 24px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;cursor:pointer;">📄 Analyse als PDF speichern</button>
       </div>
 
       <div class="footer-note">
@@ -1227,5 +1313,15 @@ function renderResults() {
 // ─── INIT ────────────────────────────────────────────────────────
 render();
 </script>
+
+<style media="print">
+  body { background: white !important; padding: 0 !important; }
+  .card { box-shadow: none !important; border-radius: 0 !important; max-width: 100% !important; }
+  .hdr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .badge, .dw-box, .product-box, .mikro-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  button[onclick="window.print()"] { display: none !important; }
+  a.product-btn { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { margin: 1cm; }
+</style>
 </body>
 </html>
