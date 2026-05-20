@@ -639,68 +639,6 @@ const Q = [
   { id:"nachher", s:5, num:"30", text:"Und — wie geht es dir jetzt, nachdem du all das in Worte gefasst hast?", hint:"Der Bogen schließt sich.", type:"gefuehl" },
 ];
 
-const Q = [
-  { id:"vorher", s:0, num:"01", text:"Wie geht es dir gerade?", hint:"Gib uns einen ehrlichen Einstieg.", type:"gefuehl" },
-  { id:"projekt", s:1, num:"02", text:"Woran arbeitest du gerade — und in welcher Phase bist du?", hint:"Projekttyp, Thema, wo du gerade wirklich stehst.", type:"ta", rows:3, max:400, ph:"z.B. \"Dritte Jahr Dissertation, gerade an Kapitel 3 — eigentlich müsste ich weiter sein...\"" },
-  { id:"rahmen", s:1, num:"03", text:"Ist dein Projekt in einen institutionellen Rahmen eingebunden?", hint:"GraKo, Forschungsgruppe, Ko-Autorschaft, Drittmittelprojekt...", type:"radio", cols:2, opts:[
-    { v:"ja_grakogruppe", l:"Ja — GraKo oder Forschungsgruppe" },
-    { v:"ja_koautorin", l:"Ja — Ko-Autorschaft oder Projekt" },
-    { v:"nein_solo", l:"Nein — ich arbeite solo" },
-    { v:"nein_freie", l:"Nein — freie Wissenschaftlerin" },
-  ]},
-  { id:"deadline", s:1, num:"04", text:"Hast du eine Deadline — und wie fühlst du dich damit?", hint:"Datum optional. Das Gefühl ist das Wichtigere.", type:"deadline" },
-  { id:"warum_jetzt", s:1, num:"05", text:"Warum hast du dich gerade jetzt für diesen Audit entschieden?", hint:"Was hat den Ausschlag gegeben?", type:"ta", rows:3, max:300, ph:"Was hat dich hierher gebracht?" },
-  { id:"tb_skala", s:2, num:"06", text:"Als wie stark schätzt du deine aktuelle Textbeziehung ein?", hint:"Die Verbindung zu deinem Schreib-Ich — zu deinen Ideen, deiner wissenschaftlichen Stimme.", type:"scale", min:1, max:5, labs:["Sehr schwach","Sehr stark"] },
-  { id:"tb_beschreibung", s:2, num:"07", text:"Wie fühlt sich deine Textbeziehung gerade an?", hint:"Ein Bild, ein Satz, ein Gefühl. Kein perfekter Text nötig.", type:"ta", rows:4, max:400, ph:"z.B. \"Wir haben uns ein bisschen fremd geworden\"" },
-  { id:"tb_wunsch", s:2, num:"08", text:"Wie möchtest du, dass sie sich anfühlt?", hint:"Wenn du dir das frei wünschen könntest.", type:"ta", rows:3, max:300, ph:"Dein Wunschbild der Textbeziehung..." },
-  { id:"tb_veraenderung", s:2, num:"09", text:"Was würde sich in deinem Leben ändern, wenn deine Textbeziehung gesund wäre?", hint:"Konkret — was wäre anders?", type:"ta", rows:3, max:300, ph:"Was wäre möglich?" },
-  { id:"care_kinder", s:3, num:"10", text:"Wie viele Kinder hast du — und wie alt sind sie?", hint:"Grob reicht.", type:"ta", rows:2, max:300, ph:"z.B. \"Zwei Kinder, 2 und 5 Jahre...\"" },
-  { id:"care_aufgaben", s:3, num:"11", text:"Welche Care-Aufgaben übernimmst überwiegend du?", hint:"Denk auch an die kognitiven und emotionalen: Arzttermine, Geburtstagsplanung, die Stimmung des Haushalts regulieren...", type:"ta", rows:4, max:400, ph:"Aktive, kognitive und emotionale Aufgaben..." },
-  { id:"care_energie", s:3, num:"12", text:"Welche Care-Momente kosten dich am meisten Energie — und welche geben dir welche zurück?", hint:"Beides ist wichtig.", type:"ta", rows:4, max:400, ph:"Kostet: ... / Gibt: ..." },
-  { id:"care_rueckzug", s:3, num:"13", text:"Hast du regelmäßig wirklich ungestörte Zeit nur für dich?", hint:"Nicht Schreibzeit — Zeit ohne Verfügbarkeitserwartung.", type:"radio", opts:[
-    { v:"ja_regelmaessig", l:"Ja, regelmäßig und verlässlich" },
-    { v:"manchmal", l:"Manchmal — aber nicht verlässlich" },
-    { v:"selten", l:"Selten — meistens bin ich \"gleich wieder da\"" },
-    { v:"kaum", l:"Kaum oder nie" },
-  ]},
-  { id:"abgrenzung", s:3, num:"14", text:"Wovon möchtest du dich mehr abgrenzen?", hint:"Von Menschen, Erwartungen, Aufgaben, Verfügbarkeiten — was auch immer.", type:"ta", rows:3, max:300, ph:"Was zieht zu viel von deiner Energie?" },
-  { id:"faktoren", s:3, num:"15", text:"Welche dieser Faktoren spürst du am stärksten in deinem Alltag?", hint:"Wähle die drei, die am meisten zutreffen.", type:"multi3", opts:[
-    { v:"erschoepfung", l:"Erschöpfung" },
-    { v:"fremdbestimmung", l:"Fremdbestimmung" },
-    { v:"verfuegbarkeit", l:"Ständige Verfügbarkeit" },
-    { v:"unsicherheit", l:"Unsicherheit" },
-    { v:"schuldgefuehle", l:"Schuldgefühle / Scham" },
-  ]},
-  { id:"sw_mutter", s:3, num:"16", text:"Als wie hoch schätzt du deine Selbstwirksamkeit als Mutter* gerade ein?", hint:"Wie sehr vertraust du darauf, dass du als Mutter* das Richtige tust und kannst?", type:"scale", min:1, max:10, labs:["Sehr niedrig","Sehr hoch"] },
-  { id:"sw_wissenschaft", s:3, num:"17", text:"Als wie hoch schätzt du deine Selbstwirksamkeit als Wissenschaftler*in gerade ein?", hint:"Wie sehr vertraust du darauf, dass du deine wissenschaftliche Arbeit wirklich voranbringen kannst?", type:"scale", min:1, max:10, labs:["Sehr niedrig","Sehr hoch"] },
-  { id:"dw_zeiten", s:4, num:"18", text:"Zu welchen Tageszeiten bist du am leistungsfähigsten?", hint:"Nicht was gerade möglich ist — dein ideales Zeitfenster.", type:"multi", opts:[
-    { v:"frueh", l:"Früh morgens (vor 7 Uhr)" },
-    { v:"morgens", l:"Morgens (7–10 Uhr)" },
-    { v:"vormittags", l:"Vormittags (10–12 Uhr)" },
-    { v:"nachmittags", l:"Nachmittags (13–17 Uhr)" },
-    { v:"abends", l:"Abends (17–20 Uhr)" },
-    { v:"spaet", l:"Spät abends / nachts" },
-  ]},
-  { id:"dw_konzentration", s:4, num:"19", text:"Wie gut kannst du dich konzentrieren, wenn du wirklich ungestört Zeit hast?", hint:"Nicht wie oft du Zeit hast — sondern wie tief du kommst, wenn du sie hast.", type:"scale", min:1, max:5, labs:["Gar nicht","Sehr tief"] },
-  { id:"dw_dauer", s:4, num:"20", text:"Wie lange kannst du gerade am Stück wirklich konzentriert arbeiten?", hint:"Ehrlich — ohne aufzugeben oder abgelenkt zu werden.", type:"radio", opts:[
-    { v:"unter20", l:"Unter 20 Minuten" },
-    { v:"20bis45", l:"20–45 Minuten" },
-    { v:"45bis90", l:"45–90 Minuten" },
-    { v:"ueber90", l:"Über 90 Minuten am Stück" },
-  ]},
-  { id:"dw_tools", s:4, num:"21", text:"Nutzt du bereits Strategien oder Tools für deinen Fokus?", hint:"Timer, Musik, feste Zeiten, Rituale — was auch immer.", type:"ta", rows:2, max:300, ph:"z.B. \"Manchmal Timer, aber nicht konsequent\" oder \"Noch gar nichts\"" },
-  { id:"fokuszeit_realistisch", s:4, num:"22", text:"Wie viel Fokuszeit hast du realistisch in den nächsten drei Wochen?", hint:"Nicht was du dir wünschst — was wirklich da ist.", type:"radio", cols:2, opts:[
-    { v:"unter2h", l:"Unter 2 Stunden/Woche" },
-    { v:"2bis5h", l:"2–5 Stunden/Woche" },
-    { v:"5bis10h", l:"5–10 Stunden/Woche" },
-    { v:"ueber10h", l:"Über 10 Stunden/Woche" },
-  ]},
-  { id:"fokuszeit_planung", s:4, num:"23", text:"Stell dir vor, du hast 90 Minuten Fokuszeit eingeplant. Was musst du organisieren, damit diese dir wirklich gehören?", hint:"Kinderbetreuung, Partner*in, Kollegen, innere Stimmen — was auch immer im Weg steht.", type:"ta", rows:4, max:400, ph:"Was braucht es, damit diese 90 Minuten wirklich gehören dir?" },
-  { id:"dw_wunsch", s:4, num:"24", text:"Wovon wünschst du dir mehr in deinem Schreiballtag — und wovon weniger?", hint:"Beide Seiten zählen.", type:"ta", rows:4, max:400, ph:"Mehr: ... / Weniger: ..." },
-  { id:"schreibfee", s:5, num:"25", text:"Wenn dir die Schreibfee heute Nacht eine neue Fähigkeit bringen dürfte — welche wäre das?", hint:"Was wäre das größte Geschenk für dein Schreiben?", type:"ta", rows:3, max:300, ph:"Alles ist erlaubt." },
-  { id:"nachher", s:5, num:"26", text:"Und — wie geht es dir jetzt, nachdem du all das in Worte gefasst hast?", hint:"Der Bogen schließt sich.", type:"gefuehl" },
-];
-
 // ─── SYSTEM PROMPT ───────────────────────────────────────────────
 const SYSTEM = `Du bist ALMA, die systemische KI-Schreibbegleiterin von Dr. Wiebke Vogelaar (Alma Mater Schreibcoaching). Du analysierst den Alma-Audit einer Wissenschaftlerin mit Care-Verantwortung und erstellst eine substantielle, wirklich hilfreiche Analyse.
 
