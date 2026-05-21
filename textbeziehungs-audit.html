@@ -651,14 +651,16 @@ KERNKONZEPTE:
 - WARUM (persönlicher Wert der Arbeit) ist das Fundament für alles — immer aufgreifen.
 
 DEEP WORK MODELLE & BEREITSCHAFT:
-- Rhythmisch: täglich 45-90 min. Ideal als Einstieg.
-- Bimodal: ganze Tage/Phasen. Braucht gute Unterstützung zu Hause.
-- Journalistisch: flexible Kurzblocks — nur für Geübte.
+- Rhythmisch: täglich feste kleine Zeitfenster (45–90 Min). Ideal als Einstieg — verlässlich, überschaubar, unabhängig von Unterstützung.
+- Bimodal: ganze Tage oder mehrtägige Phasen für tiefe Arbeit. Braucht verlässliche Betreuung und etwas Basis-Konzentrationsfähigkeit.
+- Journalistisch: hochfokussierte flexible Kurzblocks wann immer sie sich öffnen — nur für bereits Geübte.
 - HOCH: Konzentration 4-5/5, Dauer 45+min → Bimodal oder Mix
 - MITTEL: Konzentration 3/5, Dauer 20-45min → Rhythmisch
-- AUFBAU: Konzentration 1-2/5 → erst Grundlagen angehen
+- AUFBAU: Konzentration 1-2/5 ODER hauptmuster ist Erschöpfungsblockade → IMMER bereitschaft "aufbau". Erschöpfungsblockade und Deep Work Bereitschaft schließen sich aus. Erst die Erschöpfung angehen — dann Deep Work Struktur aufbauen.
 
-POMODORO: Nicht einfach spiegeln. Pausen sind das Luftholen beim Auftauchen — aber NICHT in Verfügbarkeit wechseln. Alma-Timer und Alma-HOOD helfen dabei.
+MODELL-ERKLÄRUNG: Das empfohlene Modell immer in einem Satz erklären was es bedeutet — auch wenn die Person es kennen könnte. Nie davon ausgehen dass Begriffe wie "bimodal" oder "rhythmisch" klar sind. Die Erklärung gehört direkt in die modell_begruendung.
+
+SCHREIBFEE: Kein Produkt nennen, keinen Kurs empfehlen. Nur: Antwort aufgreifen → Was würde sich ändern? → Freewriting-Einladung. Produktempfehlungen kommen ausschließlich in naechster_schritt.
 
 SPRACHREGELN: NIEMALS "einfach" + "schreiben" kombinieren. Keine Floskeln. Konkret auf diese Person eingehen.
 
@@ -684,26 +686,37 @@ PRODUKTKATEGORIEN — wähle genau eine:
 - "ki": ki_interesse ist "ja_aktiv" oder "ja_interesse" UND (KI als Thema in anderen Antworten sichtbar ODER Wunsch nach mehr Coaching-Unterstützung)
 - "collection": mehrere gleichwertige Problemfelder, keine klare Dominanz
 
+ANALYSE-PRINZIP — WICHTIGSTE REGEL:
+Nicht spiegeln, sondern deuten. ALMA beschreibt NICHT was die Person gesagt hat — sie benennt, was es bedeutet.
+
+- NICHT: "Du hast gesagt, deine Textbeziehung fühlt sich fremd an." (Das weiß sie bereits.)
+- SONDERN: Was verrät diese Metapher über den tieferliegenden Mechanismus? Was sieht ALMA, was die Person vielleicht noch nicht so benannt hat?
+- Antworten aus verschiedenen Blöcken VERKNÜPFEN: Wenn jemand bei der Textbeziehung "fremd" sagt und bei den Care-Aufgaben "ich bin immer zuletzt dran" — diese Verbindung benennen. Das ist der echte Mehrwert.
+- Das strukturelle Argument einbringen: "Das ist kein persönliches Versagen, sondern die Auswirkung von..." — das ist Wiebkes Kernthese. Sie muss in jeder Analyse spürbar sein.
+- Pro Abschnitt mindestens EINE Aussage formulieren, die die Person so noch nicht gesagt oder gedacht hat.
+- Keine Aufzählungen von Antwortinhalten. Kein Zusammenfassen. Interpretieren, einordnen, benennen.
+- Deep Work: Nicht nur bestätigen was die Person gesagt hat. Auch herausfordern — was könnte sie ausprobieren, das sie noch nicht in Betracht gezogen hat?
+
 AUSGABE — NUR dieses JSON, kein Text darum:
 {
   "vorher": [Zahl 1-5],
   "nachher": [Zahl 1-5],
-  "einleitung": "2-3 Sätze, warm, konkret auf ihre Antworten. Gerne das persönliche Warum aus Frage 03 aufgreifen. KEINE Zahlen für die Stimmung verwenden (nicht '3 auf 4' oder '3/5'). Den emotionalen Shift stattdessen in Worten beschreiben wenn relevant.",
-  "textbeziehung_analyse": "3-4 Sätze: aktuelle Textbeziehung + Wunsch + was sich ändern würde.",
-  "care_dynamik": "3-4 Sätze: Sorgearbeitstypen, Dauerverfügbarkeit, was die 90-Min-Planungsfrage und Abgrenzungsfrage zeigen.",
-  "selbstwirksamkeit_einblick": "2-3 Sätze: Schere zwischen Mutter* und Wissenschaftlerin benennen.",
-  "hauptmuster": { "name": "Wiebkes Begriff", "erklaerung": "2-3 Sätze konkret auf sie bezogen." },
+  "einleitung": "2-3 Sätze. KEINE Zahlen für Stimmung. Nicht wiederholen was gesagt wurde — stattdessen eine Verbindung ziehen oder etwas benennen das zwischen den Zeilen stand. Warm und konkret.",
+  "textbeziehung_analyse": "3-4 Sätze. Die Metapher oder das Bild interpretieren, nicht beschreiben. Was steckt dahinter? Was sagt es über die tieferliegende Dynamik? Den Wunsch aufgreifen und einordnen — was wäre nötig damit er Wirklichkeit wird?",
+  "care_dynamik": "3-4 Sätze. Nicht die Care-Aufgaben auflisten — den Typ der Last benennen (kognitive Sorgearbeit, emotionale Sorgearbeit) und die strukturelle Konsequenz für die Fokuszeit ziehen. Eine Verbindung zu einem anderen Antwortblock herstellen.",
+  "selbstwirksamkeit_einblick": "2-3 Sätze. Die Schere zwischen Mutter* und Wissenschaftlerin interpretieren — was bedeutet dieses Muster für die Identität? Nicht beschreiben, deuten.",
+  "hauptmuster": { "name": "Wiebkes Begriff", "erklaerung": "2-3 Sätze. Konkret auf sie bezogen — aber so, dass sie etwas Neues hören. Der strukturelle Rahmen muss sichtbar sein." },
   "deep_work": {
     "bereitschaft": "hoch|mittel|aufbau",
     "modell": "Rhythmisch|Bimodal|Journalistisch|Mix Rhythmisch+Bimodal",
-    "modell_begruendung": "2-3 Sätze mit Bezug auf Tageszeiten, Ort, Fokuszeit und Care-Situation.",
-    "erste_schritte": "2-3 konkrete erste Schritte als Fließtext."
+    "modell_begruendung": "2-3 Sätze. Nicht nur bestätigen was sie gesagt hat. Auch motivieren neue Zeitfenster zu erkunden die sie noch nicht ausprobiert hat.",
+    "erste_schritte": "2-3 konkrete, direkt umsetzbare Schritte. Spezifisch, nicht generisch."
   },
-  "mikro_tipp": "1 konkreter Tipp für heute.",
-  "schreibfee": "2-3 Sätze: aufgreifen + Was würde sich ändern? + Freewriting + Mini-Kurs Textbeziehung.",
+  "mikro_tipp": "1 Tipp für heute — so konkret, dass sie ihn in den nächsten Stunden umsetzen kann.",
+  "schreibfee": "2-3 Sätze: aufgreifen + Was würde sich ändern? + Freewriting-Einladung + Alma Mater Mini-Kurs Textbeziehung.",
   "kategorie": "textbeziehung|mental_load|muttertaet|big_rocks|rueckzug|zyklus|ki|collection",
-  "naechster_schritt": "2-3 Sätze warum dieses Produkt jetzt passt. Bei KI: ALMA als Custom GPT und Claude Skill erwähnen.",
-  "hood_pitch": "3-4 Sätze: Alma-HOOD als Heimat für alles was hier angesprochen wurde. Erwähnen dass alle Mini-Kurse dort als Live-Workshops entstanden sind und es dort jeden Monat neue gibt. Deep Work Essentials Kurs inklusive. Behutsam und einladend — keine Werbung."
+  "naechster_schritt": "2-3 Sätze warum dieses Produkt jetzt der richtige Schritt ist. Nicht generisch — auf ihre konkrete Situation beziehen. Bei KI: ALMA als Custom GPT und Claude Skill erwähnen.",
+  "hood_pitch": "3-4 Sätze: Alma-HOOD als Heimat für genau das, was in dieser Analyse sichtbar wurde. Spezifisch auf ihre Situation eingehen, nicht generisch pitchen. DWE inklusive kurz erklären. Einladend, nicht werbend."
 }`;
 
 // ─── STATE ───────────────────────────────────────────────────────
@@ -1226,23 +1239,23 @@ function renderResults() {
         <p style="margin-bottom:14px;">${esc(r.naechster_schritt)}</p>
 
         <!-- Mini-Kurs als #1 -->
-        <p style="font-size:13px;color:#7a7a7a;margin-bottom:10px;font-style:italic;">Alle Alma Mater Mini-Kurse, wie dieser zur Textbeziehung, sind als Live-Workshops in der Alma-HOOD entstanden. Hier bekommst du deinen passenden Kurs kostenlos — als Vorgeschmack:</p>
-        <div class="product-box" style="margin-bottom:16px;">
+        <p style="font-size:13px;color:#7a7a7a;margin-bottom:10px;font-style:italic;">Alle Alma Mater Mini-Kurse sind als Live-Workshops in der Alma-HOOD entstanden. Hier bekommst du deinen passenden Kurs kostenlos — als Vorgeschmack:</p>
+        <div class="product-box" style="margin-bottom:28px;">
           <div style="background:#472c4c;color:white;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:6px 6px 0 0;margin:-18px -20px 14px -20px;font-family:'Montserrat',sans-serif;font-weight:700;">Mein Geschenk an dich</div>
           <div class="pname">${esc(product.name)}</div>
           <p>${esc(product.beschreibung)}</p>
-          <p style="font-size:13px;color:#7a7a7a;margin-bottom:13px;">${esc(product.hood_kontext || "")}</p>
           <a href="${product.url}" target="_blank" rel="noopener noreferrer" class="product-btn">${esc(product.cta)}</a>
         </div>
 
-        <!-- HOOD als #2 -->
+        <!-- HOOD klar getrennt nach dem Button -->
         <div style="border:2px solid #254b34;border-radius:12px;padding:18px 20px;background:#eaf2ed;">
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#254b34;font-weight:700;margin-bottom:8px;">Und wenn du mehr möchtest</div>
           <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#254b34;margin-bottom:10px;">Alma-HOOD — Deine digitale Schreibgemeinschaft</div>
           <p style="font-size:13px;line-height:1.7;margin-bottom:12px;">${esc(r.hood_pitch || "")}</p>
-          <p style="font-size:13px;line-height:1.7;margin-bottom:12px;"><strong style="color:#254b34;">Hoodies</strong> — Zugang zum digitalen Coworking auf Gather mit care-sensiblen Timern, die Wiebkes Konzepte tragen, der Aufzeichnung des aktuellsten Workshops und Wiebkes Selbstlernkurs <em>Deep Work Essentials</em> — einer ausführlichen Anleitung zu care-sensiblen Fokusstrategien.</p>
-          <p style="font-size:13px;line-height:1.7;margin-bottom:14px;"><strong style="color:#254b34;">Almas</strong> — Die engere Gemeinschaft mit direktem Zugang zu mir: monatliche Live-Workshops, in denen wir gemeinsam in die Tiefe gehen, Big Rocks Treffen um deine wichtigsten Projekte auf die Spur zu bringen, Live-Q&As, eine wachsende Mediathek aus Mini-Kursen und eine Signal-Gruppe in der du jederzeit Fragen stellen kannst. Kein Warten auf den nächsten Termin — echte Begleitung, die sich anfühlt wie eine Gemeinschaft, die dich kennt.</p>
-          <p style="font-size:12px;color:#254b34;font-weight:600;margin-bottom:13px;">Ab 1. Juni gibt es wieder freie Plätze — melde dich jetzt unverbindlich auf die Warteliste.</p>
-          <a href="https://alma-mater.myflodesk.com/alma-hood-2026" target="_blank" rel="noopener noreferrer" class="product-btn" style="background:#254b34;">Auf die Warteliste — Platz sichern →</a>
+          <p style="font-size:13px;line-height:1.7;margin-bottom:12px;"><strong style="color:#254b34;">Hoodies</strong> — Zugang zum digitalen Coworking auf Gather mit care-sensiblen Timern, der Aufzeichnung des aktuellsten Workshops und Wiebkes Selbstlernkurs <em>Deep Work Essentials</em>.</p>
+          <p style="font-size:13px;line-height:1.7;margin-bottom:14px;"><strong style="color:#254b34;">Almas</strong> — Alles der Hoodies plus monatliche Live-Workshops, Big Rocks Treffen, Q&As, eine wachsende Mini-Kurs-Mediathek und eine Signal-Gruppe — mit direktem Zugang zu Wiebke.</p>
+          <p style="font-size:12px;color:#254b34;font-weight:600;margin-bottom:13px;">Ab 1. Juni gibt es wieder freie Plätze — jetzt unverbindlich auf die Warteliste.</p>
+          <a href="https://alma-mater.myflodesk.com/alma-hood-2026" target="_blank" rel="noopener noreferrer" class="product-btn" style="background:#254b34;">Auf die Warteliste →</a>
         </div>
       </div>
 
