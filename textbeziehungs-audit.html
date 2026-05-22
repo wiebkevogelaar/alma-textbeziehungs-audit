@@ -607,7 +607,8 @@ const Q = [
   { id:"sw_mutter", s:3, num:"20", text:"Als wie hoch schätzt du deine Selbstwirksamkeit als Mutter* gerade ein?", hint:"Wie sehr vertraust du darauf, dass du als Mutter* das Richtige tust und kannst?", type:"scale", min:1, max:10, labs:["Sehr niedrig","Sehr hoch"] },
   { id:"sw_wissenschaft", s:3, num:"21", text:"Als wie hoch schätzt du deine Selbstwirksamkeit als Wissenschaftler*in gerade ein?", hint:"Wie sehr vertraust du darauf, dass du deine wissenschaftliche Arbeit wirklich voranbringen kannst?", type:"scale", min:1, max:10, labs:["Sehr niedrig","Sehr hoch"] },
   { id:"zyklus", s:3, num:"22", text:"Falls du menstruierst — wie stark beeinflusst dein Zyklus dein Schreiben?", hint:"Wenn das bei dir kein Thema ist, kannst du diese Frage einfach überspringen.", type:"scale_optional", min:1, max:5, labs:["Kaum spürbar","Sehr stark"] },
-  { id:"dw_zeiten", s:4, num:"23", text:"Zu welchen Tageszeiten bist du am leistungsfähigsten?", hint:"Nicht was gerade möglich ist — dein ideales Zeitfenster.", type:"multi", opts:[
+  { id:"morgenroutine", s:4, num:"23", text:"Wie sieht dein Start in den Tag in der Regel aus?", hint:"Vom Aufstehen bis zum Ankommen am Schreibtisch — was passiert in dieser Zeit?", type:"ta", rows:4, max:400, ph:"z.B. \"Kinder fertigmachen, Frühstück, dann noch schnell drei Mails — und dann bin ich eigentlich schon müde\"" },
+  { id:"dw_zeiten", s:4, num:"24", text:"Zu welchen Tageszeiten bist du am leistungsfähigsten?", hint:"Nicht was gerade möglich ist — dein ideales Zeitfenster.", type:"multi", opts:[
     { v:"frueh", l:"Früh morgens (vor 7 Uhr)" },
     { v:"morgens", l:"Morgens (7–10 Uhr)" },
     { v:"vormittags", l:"Vormittags (10–12 Uhr)" },
@@ -615,32 +616,32 @@ const Q = [
     { v:"abends", l:"Abends (17–20 Uhr)" },
     { v:"spaet", l:"Spät abends / nachts" },
   ]},
-  { id:"dw_ort", s:4, num:"24", text:"Wo arbeitest du am liebsten und am besten?", hint:"Physisch oder digital — was gibt dir Energie zum Schreiben?", type:"ta", rows:2, max:300, ph:"z.B. \"Zuhause am Schreibtisch wenn es ruhig ist\" oder \"Am liebsten in der Bibliothek\"" },
-  { id:"dw_konzentration", s:4, num:"25", text:"Wie gut kannst du dich konzentrieren, wenn du wirklich ungestört Zeit hast?", hint:"Nicht wie oft du Zeit hast — sondern wie tief du kommst, wenn du sie hast.", type:"scale", min:1, max:5, labs:["Gar nicht","Sehr tief"] },
-  { id:"dw_dauer", s:4, num:"26", text:"Wie lange kannst du gerade am Stück wirklich konzentriert arbeiten?", hint:"Ehrlich — ohne aufzugeben oder abgelenkt zu werden.", type:"radio", opts:[
+  { id:"dw_ort", s:4, num:"25", text:"Wo arbeitest du am liebsten und am besten?", hint:"Physisch oder digital — was gibt dir Energie zum Schreiben?", type:"ta", rows:2, max:300, ph:"z.B. \"Zuhause am Schreibtisch wenn es ruhig ist\" oder \"Am liebsten in der Bibliothek\"" },
+  { id:"dw_konzentration", s:4, num:"26", text:"Wie gut kannst du dich konzentrieren, wenn du wirklich ungestört Zeit hast?", hint:"Nicht wie oft du Zeit hast — sondern wie tief du kommst, wenn du sie hast.", type:"scale", min:1, max:5, labs:["Gar nicht","Sehr tief"] },
+  { id:"dw_dauer", s:4, num:"27", text:"Wie lange kannst du gerade am Stück wirklich konzentriert arbeiten?", hint:"Ehrlich — ohne aufzugeben oder abgelenkt zu werden.", type:"radio", opts:[
     { v:"unter20", l:"Unter 20 Minuten" },
     { v:"20bis45", l:"20–45 Minuten" },
     { v:"45bis90", l:"45–90 Minuten" },
     { v:"ueber90", l:"Über 90 Minuten am Stück" },
   ]},
-  { id:"dw_tools_fokus", s:4, num:"27", text:"Nutzt du bereits Strategien oder Tools für deine Fokuszeit?", hint:"Timer, Musik, feste Zeiten, Rituale — was auch immer.", type:"ta", rows:2, max:300, ph:"z.B. \"Manchmal Timer, aber nicht konsequent\" oder \"Noch gar nichts\"" },
-  { id:"dw_tools_planung", s:4, num:"28", text:"Und wie planst du deine Aufgaben — hast du ein System dafür?", hint:"Wie weißt du, woran du als nächstes arbeitest?", type:"ta", rows:2, max:300, ph:"z.B. \"To-do-Liste, aber die wächst unkontrolliert\" oder \"Kein festes System\"" },
-  { id:"ki_interesse", s:4, num:"29", text:"Nutzt du bereits KI in deiner Forschung — oder interessiert dich das?", hint:"Ganz offen gemeint.", type:"radio", opts:[
+  { id:"dw_tools_fokus", s:4, num:"28", text:"Nutzt du bereits Strategien oder Tools für deine Fokuszeit?", hint:"Timer, Musik, feste Zeiten, Rituale — was auch immer.", type:"ta", rows:2, max:300, ph:"z.B. \"Manchmal Timer, aber nicht konsequent\" oder \"Noch gar nichts\"" },
+  { id:"dw_tools_planung", s:4, num:"29", text:"Und wie planst du deine Aufgaben — hast du ein System dafür?", hint:"Wie weißt du, woran du als nächstes arbeitest?", type:"ta", rows:2, max:300, ph:"z.B. \"To-do-Liste, aber die wächst unkontrolliert\" oder \"Kein festes System\"" },
+  { id:"ki_interesse", s:4, num:"30", text:"Nutzt du bereits KI in deiner Forschung — oder interessiert dich das?", hint:"Ganz offen gemeint.", type:"radio", opts:[
     { v:"ja_aktiv", l:"Ja, ich nutze KI-Tools bereits aktiv" },
     { v:"ja_interesse", l:"Ich habe Interesse, aber noch wenig Erfahrung" },
     { v:"nein_offen", l:"Noch nicht — aber offen dafür" },
     { v:"nein_skeptisch", l:"Eher nicht — ich bin skeptisch" },
   ]},
-  { id:"fokuszeit_realistisch", s:4, num:"30", text:"Wie viel Fokuszeit hast du realistisch in den nächsten drei Wochen?", hint:"Nicht was du dir wünschst — was wirklich da ist.", type:"radio", cols:2, opts:[
+  { id:"fokuszeit_realistisch", s:4, num:"31", text:"Wie viel Fokuszeit hast du realistisch in den nächsten drei Wochen?", hint:"Nicht was du dir wünschst — was wirklich da ist.", type:"radio", cols:2, opts:[
     { v:"unter2h", l:"Unter 2 Stunden/Woche" },
     { v:"2bis5h", l:"2–5 Stunden/Woche" },
     { v:"5bis10h", l:"5–10 Stunden/Woche" },
     { v:"ueber10h", l:"Über 10 Stunden/Woche" },
   ]},
-  { id:"fokuszeit_planung", s:4, num:"31", text:"Stell dir vor, du hast 90 Minuten Fokuszeit eingeplant. Was musst du organisieren, damit diese dir wirklich gehören?", hint:"Kinderbetreuung, Partner*in, Kollegen, innere Stimmen — was auch immer im Weg steht.", type:"ta", rows:4, max:400, ph:"Was braucht es, damit diese 90 Minuten wirklich dir gehören?" },
-  { id:"dw_wunsch", s:4, num:"32", text:"Wovon wünschst du dir mehr in deinem Schreiballtag — und wovon weniger?", hint:"Beide Seiten zählen.", type:"ta", rows:4, max:400, ph:"Mehr: ... / Weniger: ..." },
-  { id:"schreibfee", s:5, num:"33", text:"Wenn dir die Schreibfee heute Nacht eine neue Fähigkeit bringen dürfte — welche wäre das?", hint:"Was wäre das größte Geschenk für dein Schreiben?", type:"ta", rows:3, max:300, ph:"Alles ist erlaubt." },
-  { id:"nachher", s:5, num:"34", text:"Und — wie geht es dir jetzt, nachdem du all das in Worte gefasst hast?", hint:"Der Bogen schließt sich.", type:"gefuehl" },
+  { id:"fokuszeit_planung", s:4, num:"32", text:"Stell dir vor, du hast 90 Minuten Fokuszeit eingeplant. Was musst du organisieren, damit diese dir wirklich gehören?", hint:"Kinderbetreuung, Partner*in, Kollegen, innere Stimmen — was auch immer im Weg steht.", type:"ta", rows:4, max:400, ph:"Was braucht es, damit diese 90 Minuten wirklich dir gehören?" },
+  { id:"dw_wunsch", s:4, num:"33", text:"Wovon wünschst du dir mehr in deinem Schreiballtag — und wovon weniger?", hint:"Beide Seiten zählen.", type:"ta", rows:4, max:400, ph:"Mehr: ... / Weniger: ..." },
+  { id:"schreibfee", s:5, num:"34", text:"Wenn dir die Schreibfee heute Nacht eine neue Fähigkeit bringen dürfte — welche wäre das?", hint:"Was wäre das größte Geschenk für dein Schreiben?", type:"ta", rows:3, max:300, ph:"Alles ist erlaubt." },
+  { id:"nachher", s:5, num:"35", text:"Und — wie geht es dir jetzt, nachdem du all das in Worte gefasst hast?", hint:"Der Bogen schließt sich.", type:"gefuehl" },
 ];
 
 // ─── SYSTEM PROMPT ───────────────────────────────────────────────
@@ -675,8 +676,17 @@ MINI-KURS BENENNUNG: Immer "Alma Mater Mini-Kurs zur Textbeziehung" oder "der Al
 
 WO-DIMENSION: Den beschriebenen Deep Work Ort konkret aufgreifen. Digitale Orte wie die Alma-HOOD aktiv erwähnen wo passend.
 
+ERHOLUNGSPROKRASTINATION & MORGENROUTINE:
+Die Morgenroutine (morgenroutine) zeigt, wie erschöpft jemand schon an den Schreibtisch kommt — bevor die eigentliche Arbeit beginnt. Typische Muster: direkt nach dem Aufstehen Care-Arbeit, keine Übergangspause, gedanklich schon überall. Das ist kein Disziplinproblem, sondern strukturelle Erschöpfung.
+Konkrete Tipps die erwähnt werden dürfen (situativ, nie als Pflicht):
+- Heartdump: Emotionen kurz aufschreiben bevor man beginnt — leert den Kopf
+- Braindump: Alle offenen Aufgaben/Gedanken rausschreiben — bevor man sich setzt
+- Spazierengehen vor dem Ankommen am Schreibtisch — auch 10 Minuten
+- Aus dem Haus gehen bevor die anderen wach werden — Übergangsritual schaffen
+WICHTIG: Bei alleinerziehenden oder sehr knapper Care-Unterstützung keine Tipps geben die das voraussetzen (z.B. "geh früher raus als die Kinder"). Stattdessen: Heartdump oder Braindump am Schreibtisch selbst — das geht immer.
+
 FRAGEN-MAPPING — welche Frage wo einfließt:
-- wozu (Q03): Einfließen in einleitung oder deep_work. Zeigt das konkrete Ziel — realistisch oder überfordernd? Gibt dem Mikro-Tipp Orientierung.
+- morgenroutine (Q23): Einfließen in erholungsprokrastination. Zeigt wie viel Erschöpfung schon vor dem Schreiben aufgebaut wird und ob Übergänge fehlen. Zeigt das konkrete Ziel — realistisch oder überfordernd? Gibt dem Mikro-Tipp Orientierung.
 - was_magst_thema (Q04): Einfließen in textbeziehung_analyse. Was jemanden an ihrem Thema fasziniert, verrät die lebendige Verbindung zur Wissenschaft — und oft den Weg zurück zur Textbeziehung. Das Thema selbst wird NICHT analysiert oder kommentiert, nur was die Person daran liebt.
 - deadline (Q06): Einfließen in deep_work. Knappe Deadline + Erschöpfung = Spannung benennen. Realistische Deadline = konkreten Zeitrahmen für erste Schritte nutzen. Keine Deadline = mehr Spielraum für Aufbau.
 - warum_jetzt (Q07): Einfließen in einleitung. Warum JETZT? Das verrät den Kipppunkt oder die Lebensphase.
@@ -714,6 +724,7 @@ AUSGABE — NUR dieses JSON, kein Text darum:
   "einleitung": "2-3 Sätze. KEINE Zahlen für Stimmung. Nicht wiederholen was gesagt wurde — stattdessen eine Verbindung ziehen oder etwas benennen das zwischen den Zeilen stand. Warm und konkret.",
   "textbeziehung_analyse": "3-4 Sätze. Die Metapher oder das Bild interpretieren, nicht beschreiben. Was steckt dahinter? Was sagt es über die tieferliegende Dynamik? Den Wunsch aufgreifen und einordnen — was wäre nötig damit er Wirklichkeit wird?",
   "care_dynamik": "3-4 Sätze. Nicht die Care-Aufgaben auflisten — den Typ der Last benennen (kognitive Sorgearbeit, emotionale Sorgearbeit) und die strukturelle Konsequenz für die Fokuszeit ziehen. Eine Verbindung zu einem anderen Antwortblock herstellen.",
+  "erholungsprokrastination": "2-3 Sätze. Die Morgenroutine interpretieren: Wie erschöpft kommt sie an den Schreibtisch? Wird Erholung aufgeschoben oder ist gar kein Raum dafür? Einen konkreten Tipp geben (Heartdump, Braindump, Spazierengehen, frühes Rausgehen) — sensibel formuliert, nie als Pflicht. Bei alleinerziehenden nur Tipps die ohne Partner*in funktionieren.",
   "selbstwirksamkeit_einblick": "2-3 Sätze. Die Schere zwischen Mutter* und Wissenschaftlerin interpretieren — was bedeutet dieses Muster für die Identität? Nicht beschreiben, deuten.",
   "hauptmuster": { "name": "Wiebkes Begriff", "erklaerung": "2-3 Sätze. Konkret auf sie bezogen — aber so, dass sie etwas Neues hören. Der strukturelle Rahmen muss sichtbar sein." },
   "deep_work": {
@@ -1016,7 +1027,7 @@ function renderWelcome() {
 
   const body = div("welcome-body");
   const p1 = el("p", {}); p1.textContent = "Du bekommst eine substantielle Einschätzung — keine allgemeinen Tipps, sondern eine Analyse, die wirklich zu deiner Situation passt.";
-  const pill = div("pill"); pill.textContent = "⏱ Plane 15–30 Minuten ein · 34 Fragen in 5 Blöcken";
+  const pill = div("pill"); pill.textContent = "⏱ Plane 15–30 Minuten ein · 35 Fragen in 5 Blöcken";
 
   body.appendChild(p1);
   body.appendChild(pill);
@@ -1226,6 +1237,12 @@ function renderResults() {
         <p>${esc(r.care_dynamik)}</p>
       </div>
       ${swHtml}
+      ${r.erholungsprokrastination ? `
+      <div class="divider"></div>
+      <div class="res-section">
+        <div class="res-label">Erholungsprokrastination</div>
+        <p>${esc(r.erholungsprokrastination)}</p>
+      </div>` : ""}
       <div class="divider"></div>
 
       <div class="res-section">
