@@ -576,35 +576,38 @@ const SECTIONS = [
 const Q = [
   { id:"vorher", s:0, num:"01", text:"Wie geht es dir gerade?", hint:"Gib uns einen ehrlichen Einstieg.", type:"gefuehl" },
   { id:"projekt", s:1, num:"02", text:"Woran arbeitest du gerade — und in welcher Phase bist du?", hint:"Projekttyp, Thema, wo du gerade wirklich stehst.", type:"ta", rows:3, max:400, ph:"z.B. \"Dritte Jahr Dissertation, gerade an Kapitel 3 — eigentlich müsste ich weiter sein...\"" },
-  { id:"warum_arbeit", s:1, num:"03", text:"Welchen Wert hat deine wissenschaftliche Arbeit für dich persönlich?", hint:"Nicht die Pflicht — sondern was daran wirklich zählt.", type:"ta", rows:3, max:300, ph:"Was treibt dich wirklich an? Was würde fehlen, wenn du aufhörst?" },
-  { id:"deadline", s:1, num:"04", text:"Hast du eine Deadline — und wie fühlst du dich damit?", hint:"Datum optional. Das Gefühl ist das Wichtigere.", type:"deadline" },
-  { id:"warum_jetzt", s:1, num:"05", text:"Warum hast du dich gerade jetzt für diesen Audit entschieden?", hint:"Was hat den Ausschlag gegeben?", type:"ta", rows:3, max:300, ph:"Was hat dich hierher gebracht?" },
-  { id:"tb_skala", s:2, num:"06", text:"Als wie stark schätzt du deine aktuelle Textbeziehung ein?", hint:"Die Textbeziehung ist die emotionale Dimension deines Schreibens — sie fühlt sich an wie eine Beziehung zu deinem Schreib-Ich. Stark oder schwach, nah oder fremd.", type:"scale", min:1, max:5, labs:["Sehr schwach","Sehr stark"] },
-  { id:"tb_beschreibung", s:2, num:"07", text:"Wie fühlt sich deine Textbeziehung gerade an?", hint:"Ein Bild, ein Satz, ein Gefühl. Kein perfekter Text nötig.", type:"ta", rows:4, max:400, ph:"z.B. \"Wir haben uns ein bisschen fremd geworden\"" },
-  { id:"tb_wunsch", s:2, num:"08", text:"Wie möchtest du, dass sie sich anfühlt?", hint:"Wenn du dir das frei wünschen könntest.", type:"ta", rows:3, max:300, ph:"Dein Wunschbild..." },
-  { id:"tb_veraenderung", s:2, num:"09", text:"Was würde sich in deinem Leben ändern, wenn deine Textbeziehung gesund wäre?", hint:"Konkret — was wäre anders?", type:"ta", rows:3, max:300, ph:"Was wäre möglich?" },
-  { id:"care_kinder", s:3, num:"10", text:"Wie viele Kinder hast du — und wie alt sind sie?", hint:"Schreiben findet nie im Vakuum statt — was du trägst, gehört untrennbar dazu. Jetzt schauen wir uns an, was neben dem Text noch da ist.", type:"ta", rows:2, max:300, ph:"z.B. \"Zwei Kinder, 2 und 5 Jahre...\"" },
-  { id:"care_aufgaben", s:3, num:"11", text:"Welche Care-Aufgaben übernimmst überwiegend du?", hint:"Denk auch an kognitive Aufgaben (Mental Load: Arzttermine koordinieren, vorausdenken, planen) und emotionale Aufgaben (Emotional Load: Stimmungen regulieren, Beziehungen pflegen).", type:"ta", rows:4, max:400, ph:"Aktive, kognitive und emotionale Aufgaben..." },
-  { id:"care_energie", s:3, num:"12", text:"Welche Care-Momente kosten dich am meisten Energie — und welche geben dir welche zurück?", hint:"Beides ist wichtig.", type:"ta", rows:4, max:400, ph:"Kostet: ... / Gibt: ..." },
-  { id:"andere_aufgaben", s:3, num:"13", text:"Was für andere Aufgaben und Verpflichtungen hast du neben deinem Schreibprojekt und deiner Kernfamilie?", hint:"Lohnarbeit, Lehre, Projektarbeit, Ehrenamt, erweiterte Familie — was auch immer sonst noch deinen Alltag prägt.", type:"ta", rows:3, max:300, ph:"Was nimmt sonst noch Zeit und Energie?" },
-  { id:"care_rueckzug", s:3, num:"14", text:"Hast du regelmäßig wirklich ungestörte Zeit nur für dich?", hint:"Nicht Schreibzeit — Zeit ohne Verfügbarkeitserwartung.", type:"radio", opts:[
+  { id:"wozu", s:1, num:"03", text:"Wozu arbeitest du zur Zeit daran?", hint:"Was ist das Ziel, auf das du gerade hinarbeitest?", type:"ta", rows:2, max:300, ph:"z.B. \"Ich möchte das Kapitel bis Juni einreichen\" oder \"Ich versuche publikationsreif zu werden\"" },
+  { id:"was_magst_thema", s:1, num:"04", text:"Was magst du an deinem Forschungsthema?", hint:"Was fasziniert dich daran — auch wenn das Schreiben gerade schwerfällt?", type:"ta", rows:3, max:300, ph:"Was zieht dich immer wieder zu diesem Thema hin?" },
+  { id:"warum_arbeit", s:1, num:"05", text:"Welchen Wert hat deine wissenschaftliche Arbeit für dich persönlich?", hint:"Nicht die Pflicht — sondern was daran wirklich zählt.", type:"ta", rows:3, max:300, ph:"Was treibt dich wirklich an? Was würde fehlen, wenn du aufhörst?" },
+  { id:"deadline", s:1, num:"06", text:"Hast du eine Deadline — und wie fühlst du dich damit?", hint:"Datum optional. Das Gefühl ist das Wichtigere.", type:"deadline" },
+  { id:"warum_jetzt", s:1, num:"07", text:"Warum hast du dich gerade jetzt für diesen Audit entschieden?", hint:"Was hat den Ausschlag gegeben?", type:"ta", rows:3, max:300, ph:"Was hat dich hierher gebracht?" },
+  { id:"tb_skala", s:2, num:"08", text:"Als wie stark schätzt du deine aktuelle Textbeziehung ein?", hint:"Die Textbeziehung ist die emotionale Dimension deines Schreibens — sie fühlt sich an wie eine Beziehung zu deinem Schreib-Ich. Stark oder schwach, nah oder fremd.", type:"scale", min:1, max:5, labs:["Sehr schwach","Sehr stark"] },
+  { id:"tb_beschreibung", s:2, num:"09", text:"Wie fühlt sich deine Textbeziehung gerade an?", hint:"Ein Bild, ein Satz, ein Gefühl. Kein perfekter Text nötig.", type:"ta", rows:4, max:400, ph:"z.B. \"Wir haben uns ein bisschen fremd geworden\"" },
+  { id:"tb_wunsch", s:2, num:"10", text:"Wie möchtest du, dass sie sich anfühlt?", hint:"Wenn du dir das frei wünschen könntest.", type:"ta", rows:3, max:300, ph:"Dein Wunschbild..." },
+  { id:"tb_veraenderung", s:2, num:"11", text:"Was würde sich in deinem Leben ändern, wenn deine Textbeziehung gesund wäre?", hint:"Konkret — was wäre anders?", type:"ta", rows:3, max:300, ph:"Was wäre möglich?" },
+  { id:"care_kinder", s:3, num:"12", text:"Wie viele Kinder hast du — und wie alt sind sie?", hint:"Schreiben findet nie im Vakuum statt — was du trägst, gehört untrennbar dazu. Jetzt schauen wir uns an, was neben dem Text noch da ist.", type:"ta", rows:2, max:300, ph:"z.B. \"Zwei Kinder, 2 und 5 Jahre...\"" },
+  { id:"care_aufgaben", s:3, num:"13", text:"Welche Care-Aufgaben übernimmst überwiegend du?", hint:"Denk auch an kognitive Aufgaben (Mental Load: Arzttermine koordinieren, vorausdenken, planen) und emotionale Aufgaben (Emotional Load: Stimmungen regulieren, Beziehungen pflegen).", type:"ta", rows:4, max:400, ph:"Aktive, kognitive und emotionale Aufgaben..." },
+  { id:"care_energie", s:3, num:"14", text:"Welche Care-Momente kosten dich am meisten Energie — und welche geben dir welche zurück?", hint:"Beides ist wichtig.", type:"ta", rows:4, max:400, ph:"Kostet: ... / Gibt: ..." },
+  { id:"andere_aufgaben", s:3, num:"15", text:"Was für andere Aufgaben und Verpflichtungen hast du neben deinem Schreibprojekt und deiner Kernfamilie?", hint:"Lohnarbeit, Lehre, Projektarbeit, Ehrenamt, erweiterte Familie — was auch immer sonst noch deinen Alltag prägt.", type:"ta", rows:3, max:300, ph:"Was nimmt sonst noch Zeit und Energie?" },
+  { id:"care_rueckzug", s:3, num:"16", text:"Hast du regelmäßig wirklich ungestörte Zeit nur für dich?", hint:"Nicht Schreibzeit — Zeit ohne Verfügbarkeitserwartung.", type:"radio", opts:[
     { v:"ja_regelmaessig", l:"Ja, regelmäßig und verlässlich" },
     { v:"manchmal", l:"Manchmal — aber nicht verlässlich" },
     { v:"selten", l:"Selten — meistens bin ich \"gleich wieder da\"" },
     { v:"kaum", l:"Kaum oder nie" },
   ]},
-  { id:"abgrenzung", s:3, num:"15", text:"Wovon möchtest du dich mehr abgrenzen?", hint:"Von Menschen, Erwartungen, Aufgaben, Verfügbarkeiten — was auch immer.", type:"ta", rows:3, max:300, ph:"Was zieht zu viel von deiner Energie?" },
-  { id:"faktoren", s:3, num:"16", text:"Welche dieser Faktoren spürst du am stärksten in deinem Alltag?", hint:"Wähle die drei, die am meisten zutreffen.", type:"multi3", opts:[
+  { id:"hobbies", s:3, num:"17", text:"Hast du Hobbies oder andere Aktivitäten, in denen du voll aufgehst?", hint:"Dinge, bei denen die Zeit vergeht und du wirklich du bist — außerhalb von Arbeit und Care.", type:"ta", rows:3, max:300, ph:"Was bringt dich in einen Zustand von echtem Eintauchen?" },
+  { id:"abgrenzung", s:3, num:"18", text:"Wovon möchtest du dich mehr abgrenzen?", hint:"Von Menschen, Erwartungen, Aufgaben, Verfügbarkeiten — was auch immer.", type:"ta", rows:3, max:300, ph:"Was zieht zu viel von deiner Energie?" },
+  { id:"faktoren", s:3, num:"19", text:"Welche dieser Faktoren spürst du am stärksten in deinem Alltag?", hint:"Wähle die drei, die am meisten zutreffen.", type:"multi3", opts:[
     { v:"erschoepfung", l:"Erschöpfung" },
     { v:"fremdbestimmung", l:"Fremdbestimmung" },
     { v:"verfuegbarkeit", l:"Ständige Verfügbarkeit" },
     { v:"unsicherheit", l:"Unsicherheit" },
     { v:"schuldgefuehle", l:"Schuldgefühle / Scham" },
   ]},
-  { id:"sw_mutter", s:3, num:"17", text:"Als wie hoch schätzt du deine Selbstwirksamkeit als Mutter* gerade ein?", hint:"Wie sehr vertraust du darauf, dass du als Mutter* das Richtige tust und kannst?", type:"scale", min:1, max:10, labs:["Sehr niedrig","Sehr hoch"] },
-  { id:"sw_wissenschaft", s:3, num:"18", text:"Als wie hoch schätzt du deine Selbstwirksamkeit als Wissenschaftler*in gerade ein?", hint:"Wie sehr vertraust du darauf, dass du deine wissenschaftliche Arbeit wirklich voranbringen kannst?", type:"scale", min:1, max:10, labs:["Sehr niedrig","Sehr hoch"] },
-  { id:"zyklus", s:3, num:"19", text:"Falls du menstruierst — wie stark beeinflusst dein Zyklus dein Schreiben?", hint:"Wenn das bei dir kein Thema ist, kannst du diese Frage einfach überspringen.", type:"scale_optional", min:1, max:5, labs:["Kaum spürbar","Sehr stark"] },
-  { id:"dw_zeiten", s:4, num:"20", text:"Zu welchen Tageszeiten bist du am leistungsfähigsten?", hint:"Nicht was gerade möglich ist — dein ideales Zeitfenster.", type:"multi", opts:[
+  { id:"sw_mutter", s:3, num:"20", text:"Als wie hoch schätzt du deine Selbstwirksamkeit als Mutter* gerade ein?", hint:"Wie sehr vertraust du darauf, dass du als Mutter* das Richtige tust und kannst?", type:"scale", min:1, max:10, labs:["Sehr niedrig","Sehr hoch"] },
+  { id:"sw_wissenschaft", s:3, num:"21", text:"Als wie hoch schätzt du deine Selbstwirksamkeit als Wissenschaftler*in gerade ein?", hint:"Wie sehr vertraust du darauf, dass du deine wissenschaftliche Arbeit wirklich voranbringen kannst?", type:"scale", min:1, max:10, labs:["Sehr niedrig","Sehr hoch"] },
+  { id:"zyklus", s:3, num:"22", text:"Falls du menstruierst — wie stark beeinflusst dein Zyklus dein Schreiben?", hint:"Wenn das bei dir kein Thema ist, kannst du diese Frage einfach überspringen.", type:"scale_optional", min:1, max:5, labs:["Kaum spürbar","Sehr stark"] },
+  { id:"dw_zeiten", s:4, num:"23", text:"Zu welchen Tageszeiten bist du am leistungsfähigsten?", hint:"Nicht was gerade möglich ist — dein ideales Zeitfenster.", type:"multi", opts:[
     { v:"frueh", l:"Früh morgens (vor 7 Uhr)" },
     { v:"morgens", l:"Morgens (7–10 Uhr)" },
     { v:"vormittags", l:"Vormittags (10–12 Uhr)" },
@@ -612,32 +615,32 @@ const Q = [
     { v:"abends", l:"Abends (17–20 Uhr)" },
     { v:"spaet", l:"Spät abends / nachts" },
   ]},
-  { id:"dw_ort", s:4, num:"21", text:"Wo arbeitest du am liebsten und am besten?", hint:"Physisch oder digital — was gibt dir Energie zum Schreiben?", type:"ta", rows:2, max:300, ph:"z.B. \"Zuhause am Schreibtisch wenn es ruhig ist\" oder \"Am liebsten in der Bibliothek\"" },
-  { id:"dw_konzentration", s:4, num:"22", text:"Wie gut kannst du dich konzentrieren, wenn du wirklich ungestört Zeit hast?", hint:"Nicht wie oft du Zeit hast — sondern wie tief du kommst, wenn du sie hast.", type:"scale", min:1, max:5, labs:["Gar nicht","Sehr tief"] },
-  { id:"dw_dauer", s:4, num:"23", text:"Wie lange kannst du gerade am Stück wirklich konzentriert arbeiten?", hint:"Ehrlich — ohne aufzugeben oder abgelenkt zu werden.", type:"radio", opts:[
+  { id:"dw_ort", s:4, num:"24", text:"Wo arbeitest du am liebsten und am besten?", hint:"Physisch oder digital — was gibt dir Energie zum Schreiben?", type:"ta", rows:2, max:300, ph:"z.B. \"Zuhause am Schreibtisch wenn es ruhig ist\" oder \"Am liebsten in der Bibliothek\"" },
+  { id:"dw_konzentration", s:4, num:"25", text:"Wie gut kannst du dich konzentrieren, wenn du wirklich ungestört Zeit hast?", hint:"Nicht wie oft du Zeit hast — sondern wie tief du kommst, wenn du sie hast.", type:"scale", min:1, max:5, labs:["Gar nicht","Sehr tief"] },
+  { id:"dw_dauer", s:4, num:"26", text:"Wie lange kannst du gerade am Stück wirklich konzentriert arbeiten?", hint:"Ehrlich — ohne aufzugeben oder abgelenkt zu werden.", type:"radio", opts:[
     { v:"unter20", l:"Unter 20 Minuten" },
     { v:"20bis45", l:"20–45 Minuten" },
     { v:"45bis90", l:"45–90 Minuten" },
     { v:"ueber90", l:"Über 90 Minuten am Stück" },
   ]},
-  { id:"dw_tools_fokus", s:4, num:"24", text:"Nutzt du bereits Strategien oder Tools für deine Fokuszeit?", hint:"Timer, Musik, feste Zeiten, Rituale — was auch immer.", type:"ta", rows:2, max:300, ph:"z.B. \"Manchmal Timer, aber nicht konsequent\" oder \"Noch gar nichts\"" },
-  { id:"dw_tools_planung", s:4, num:"25", text:"Und wie planst du deine Aufgaben — hast du ein System dafür?", hint:"Wie weißt du, woran du als nächstes arbeitest?", type:"ta", rows:2, max:300, ph:"z.B. \"To-do-Liste, aber die wächst unkontrolliert\" oder \"Kein festes System\"" },
-  { id:"ki_interesse", s:4, num:"26", text:"Nutzt du bereits KI in deiner Forschung — oder interessiert dich das?", hint:"Ganz offen gemeint.", type:"radio", opts:[
+  { id:"dw_tools_fokus", s:4, num:"27", text:"Nutzt du bereits Strategien oder Tools für deine Fokuszeit?", hint:"Timer, Musik, feste Zeiten, Rituale — was auch immer.", type:"ta", rows:2, max:300, ph:"z.B. \"Manchmal Timer, aber nicht konsequent\" oder \"Noch gar nichts\"" },
+  { id:"dw_tools_planung", s:4, num:"28", text:"Und wie planst du deine Aufgaben — hast du ein System dafür?", hint:"Wie weißt du, woran du als nächstes arbeitest?", type:"ta", rows:2, max:300, ph:"z.B. \"To-do-Liste, aber die wächst unkontrolliert\" oder \"Kein festes System\"" },
+  { id:"ki_interesse", s:4, num:"29", text:"Nutzt du bereits KI in deiner Forschung — oder interessiert dich das?", hint:"Ganz offen gemeint.", type:"radio", opts:[
     { v:"ja_aktiv", l:"Ja, ich nutze KI-Tools bereits aktiv" },
     { v:"ja_interesse", l:"Ich habe Interesse, aber noch wenig Erfahrung" },
     { v:"nein_offen", l:"Noch nicht — aber offen dafür" },
     { v:"nein_skeptisch", l:"Eher nicht — ich bin skeptisch" },
   ]},
-  { id:"fokuszeit_realistisch", s:4, num:"27", text:"Wie viel Fokuszeit hast du realistisch in den nächsten drei Wochen?", hint:"Nicht was du dir wünschst — was wirklich da ist.", type:"radio", cols:2, opts:[
+  { id:"fokuszeit_realistisch", s:4, num:"30", text:"Wie viel Fokuszeit hast du realistisch in den nächsten drei Wochen?", hint:"Nicht was du dir wünschst — was wirklich da ist.", type:"radio", cols:2, opts:[
     { v:"unter2h", l:"Unter 2 Stunden/Woche" },
     { v:"2bis5h", l:"2–5 Stunden/Woche" },
     { v:"5bis10h", l:"5–10 Stunden/Woche" },
     { v:"ueber10h", l:"Über 10 Stunden/Woche" },
   ]},
-  { id:"fokuszeit_planung", s:4, num:"28", text:"Stell dir vor, du hast 90 Minuten Fokuszeit eingeplant. Was musst du organisieren, damit diese dir wirklich gehören?", hint:"Kinderbetreuung, Partner*in, Kollegen, innere Stimmen — was auch immer im Weg steht.", type:"ta", rows:4, max:400, ph:"Was braucht es, damit diese 90 Minuten wirklich dir gehören?" },
-  { id:"dw_wunsch", s:4, num:"29", text:"Wovon wünschst du dir mehr in deinem Schreiballtag — und wovon weniger?", hint:"Beide Seiten zählen.", type:"ta", rows:4, max:400, ph:"Mehr: ... / Weniger: ..." },
-  { id:"schreibfee", s:5, num:"30", text:"Wenn dir die Schreibfee heute Nacht eine neue Fähigkeit bringen dürfte — welche wäre das?", hint:"Was wäre das größte Geschenk für dein Schreiben?", type:"ta", rows:3, max:300, ph:"Alles ist erlaubt." },
-  { id:"nachher", s:5, num:"31", text:"Und — wie geht es dir jetzt, nachdem du all das in Worte gefasst hast?", hint:"Der Bogen schließt sich.", type:"gefuehl" },
+  { id:"fokuszeit_planung", s:4, num:"31", text:"Stell dir vor, du hast 90 Minuten Fokuszeit eingeplant. Was musst du organisieren, damit diese dir wirklich gehören?", hint:"Kinderbetreuung, Partner*in, Kollegen, innere Stimmen — was auch immer im Weg steht.", type:"ta", rows:4, max:400, ph:"Was braucht es, damit diese 90 Minuten wirklich dir gehören?" },
+  { id:"dw_wunsch", s:4, num:"32", text:"Wovon wünschst du dir mehr in deinem Schreiballtag — und wovon weniger?", hint:"Beide Seiten zählen.", type:"ta", rows:4, max:400, ph:"Mehr: ... / Weniger: ..." },
+  { id:"schreibfee", s:5, num:"33", text:"Wenn dir die Schreibfee heute Nacht eine neue Fähigkeit bringen dürfte — welche wäre das?", hint:"Was wäre das größte Geschenk für dein Schreiben?", type:"ta", rows:3, max:300, ph:"Alles ist erlaubt." },
+  { id:"nachher", s:5, num:"34", text:"Und — wie geht es dir jetzt, nachdem du all das in Worte gefasst hast?", hint:"Der Bogen schließt sich.", type:"gefuehl" },
 ];
 
 // ─── SYSTEM PROMPT ───────────────────────────────────────────────
@@ -664,17 +667,24 @@ SCHREIBFEE: Kein Produkt nennen, keinen Kurs empfehlen. Nur: Antwort aufgreifen 
 
 SPRACHREGELN: NIEMALS "einfach" + "schreiben" kombinieren. Keine Floskeln. Konkret auf diese Person eingehen.
 
-CCG KORREKT FORMULIEREN: Der Care Concentration Gap (CCG) ist kein persönliches Merkmal einer Einzelperson, sondern beschreibt einen strukturellen Zustand: Zu wenig Fürsorge zu empfangen und/oder viel Fürsorge zu leisten führt strukturell zu schlechterem Zugang zu fokussierter Arbeitszeit. NICHT: "du hast den CCG" oder "dein CCG". STATTDESSEN: "du spürst die Auswirkungen des Care Concentration Gaps", "der CCG macht sich bei dir bemerkbar als..."
+CCG KORREKT FORMULIEREN: Der Care Concentration Gap (CCG) beschreibt einen strukturellen Zustand — nicht ein persönliches Merkmal. NICHT: "du hast den CCG". STATTDESSEN: "du spürst die Auswirkungen des Care Concentration Gaps", "der CCG macht sich bei dir bemerkbar als..."
 
-MENTAL LOAD TERMINOLOGIE: Kognitive Sorgearbeit (auch: Mental Load). Emotionale Sorgearbeit (auch: Emotional Load). NIEMALS "kognitive Mental Load" oder "emotionale Mental Load" — das ist redundant. Correct: "kognitive Sorgearbeit (Mental Load)" oder "emotionale Sorgearbeit (Emotional Load)".
-
-DEEP WORK MODELL — WICHTIG: Nicht nur bestehende Zeitfenster bestätigen. Wenn jemand nur abends/nachts oder früh morgens schreibt, aktiv motivieren, neue Fenster zu erkunden — z.B. Mittagspause, Nachmittage, wenn die Betreuung es erlaubt. Das rhythmische Modell ist ein Einstieg, nicht eine Bestätigung der Nische.
+MENTAL LOAD TERMINOLOGIE: Kognitive Sorgearbeit (auch: Mental Load). Emotionale Sorgearbeit (auch: Emotional Load). NIEMALS "kognitive Mental Load" — das ist redundant.
 
 MINI-KURS BENENNUNG: Immer "Alma Mater Mini-Kurs zur Textbeziehung" oder "der Alma Mater Mini-Kurs [Name]" — nie nur "Mini-Kurs" ohne Kontext.
 
-SCHREIBFEE: Antwort warm aufgreifen + "Was würde sich ändern wenn die Fee das brächte?" + 15-min Freewriting-Einladung + Verweis auf Mini-Kurs Textbeziehung.
+WO-DIMENSION: Den beschriebenen Deep Work Ort konkret aufgreifen. Digitale Orte wie die Alma-HOOD aktiv erwähnen wo passend.
 
-WO-DIMENSION: Den beschriebenen Deep Work Ort aufgreifen und konkret darauf eingehen — auch digitale Orte wie die Alma-HOOD erwähnen.
+FRAGEN-MAPPING — welche Frage wo einfließt:
+- wozu (Q03): Einfließen in einleitung oder deep_work. Zeigt das konkrete Ziel — realistisch oder überfordernd? Gibt dem Mikro-Tipp Orientierung.
+- was_magst_thema (Q04): Einfließen in textbeziehung_analyse. Was jemanden an ihrem Thema fasziniert, verrät die lebendige Verbindung zur Wissenschaft — und oft den Weg zurück zur Textbeziehung. Das Thema selbst wird NICHT analysiert oder kommentiert, nur was die Person daran liebt.
+- deadline (Q06): Einfließen in deep_work. Knappe Deadline + Erschöpfung = Spannung benennen. Realistische Deadline = konkreten Zeitrahmen für erste Schritte nutzen. Keine Deadline = mehr Spielraum für Aufbau.
+- warum_jetzt (Q07): Einfließen in einleitung. Warum JETZT? Das verrät den Kipppunkt oder die Lebensphase.
+- andere_aufgaben (Q15): Einfließen in care_dynamik. Das vollständige Bild dessen was jemand trägt — Lohnarbeit, Lehre, Ehrenamt, erweiterte Familie — explizit benennen wenn relevant.
+- hobbies (Q17): Einfließen in deep_work oder mikro_tipp. Wer in Hobbies Flow erlebt, hat bewiesen dass tiefes Eintauchen möglich ist — das ist eine wichtige Ressource für Deep Work. Diese Verbindung ziehen. Wenn keine Hobbies genannt: das ist auch ein Signal (Fürsorgedefizit, kein Raum für sich).
+- zyklus (Q22): Wenn beantwortet und Wert 3–5: in care_dynamik oder mikro_tipp als rhythmischen Faktor einbeziehen.
+- dw_tools_fokus (Q27): Einfließen in deep_work erste_schritte. Wenn Tools vorhanden: darauf aufbauen. Wenn keine: als ersten Schritt ansehen.
+- dw_wunsch (Q32): Einfließen in mikro_tipp oder deep_work. Das "Mehr" zeigt den Wunsch, das "Weniger" zeigt die Reibung.
 
 PRODUKTKATEGORIEN — wähle genau eine:
 - "textbeziehung": tb_skala 1-2 ODER starke Entfremdung vom Text
@@ -1006,7 +1016,7 @@ function renderWelcome() {
 
   const body = div("welcome-body");
   const p1 = el("p", {}); p1.textContent = "Du bekommst eine substantielle Einschätzung — keine allgemeinen Tipps, sondern eine Analyse, die wirklich zu deiner Situation passt.";
-  const pill = div("pill"); pill.textContent = "⏱ Plane 15–30 Minuten ein · 31 Fragen in 5 Blöcken";
+  const pill = div("pill"); pill.textContent = "⏱ Plane 15–30 Minuten ein · 34 Fragen in 5 Blöcken";
 
   body.appendChild(p1);
   body.appendChild(pill);
@@ -1029,9 +1039,13 @@ function renderWelcome() {
   startBtn.textContent = "Audit starten →";
   startBtn.disabled = !S.name;
 
+  const privacyNote = el("p", { style: { fontSize: "11px", color: "#7a7a7a", marginTop: "10px", lineHeight: "1.6", textAlign: "center" } });
+  privacyNote.textContent = "Deine Antworten werden zur Analyse temporär an Anthropic übermittelt und danach nicht gespeichert.";
+
   body.appendChild(nameLabel);
   body.appendChild(nameInput);
   body.appendChild(startBtn);
+  body.appendChild(privacyNote);
 
   frag.appendChild(hdr);
   frag.appendChild(body);
