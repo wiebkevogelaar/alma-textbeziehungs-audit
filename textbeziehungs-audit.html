@@ -808,7 +808,7 @@ async function runAnalysis() {
       },
       body: JSON.stringify({
         model: "claude-sonnet-4-6",
-        max_tokens: 2500,
+        max_tokens: 4000,
         system: SYSTEM,
         messages: [{ role: "user", content: buildMessage() }],
       }),
@@ -822,9 +822,26 @@ async function runAnalysis() {
     try {
       parsed = JSON.parse(clean);
     } catch {
-      const last = clean.lastIndexOf('"}');
-      if (last > 0) parsed = JSON.parse(clean.slice(0, last + 2) + "}");
-      else throw new Error("Analyse konnte nicht gelesen werden");
+      // Strategie 1: letztes komplettes Feld finden und JSON schließen
+      const lastQuoteBrace = clean.lastIndexOf('"}');
+      if (lastQuoteBrace > 0) {
+        try { parsed = JSON.parse(clean.slice(0, lastQuoteBrace + 2) + "}"); } catch (_) {}
+      }
+      // Strategie 2: letztes } finden
+      if (!parsed) {
+        const lastBrace = clean.lastIndexOf("}");
+        if (lastBrace > 0) {
+          try { parsed = JSON.parse(clean.slice(0, lastBrace + 1)); } catch (_) {}
+        }
+      }
+      // Strategie 3: letztes vollständiges String-Feld abschneiden
+      if (!parsed) {
+        const lastComma = clean.lastIndexOf('",');
+        if (lastComma > 0) {
+          try { parsed = JSON.parse(clean.slice(0, lastComma + 1) + ',"kategorie":"collection"}'); } catch (_) {}
+        }
+      }
+      if (!parsed) throw new Error("Analyse konnte nicht gelesen werden");
     }
     S.result = parsed;
     S.phase = "results";
