@@ -737,7 +737,7 @@ AUSGABE — NUR dieses JSON, kein Text darum:
   "schreibfee": "2-3 Sätze: aufgreifen + Was würde sich ändern? + Freewriting-Einladung + Alma Mater Mini-Kurs Textbeziehung.",
   "kategorie": "textbeziehung|mental_load|muttertaet|big_rocks|rueckzug|zyklus|ki|collection",
   "naechster_schritt": "2-3 Sätze warum dieses Produkt jetzt der richtige Schritt ist. Nicht generisch — auf ihre konkrete Situation beziehen. Bei KI: ALMA als Custom GPT und Claude Skill erwähnen.",
-  "hood_pitch": "3-4 Sätze: Alma-HOOD als Heimat für genau das, was in dieser Analyse sichtbar wurde. Spezifisch auf ihre Situation eingehen, nicht generisch pitchen. DWE inklusive kurz erklären. Einladend, nicht werbend."
+  "hood_pitch": "2-3 Sätze: Einladung zur Live Q&A am 4. Juni 9:30-10:30 Uhr mit Wiebke. Bezug auf die Analyse nehmen — was in dieser Session besprochen werden kann. Einladend und konkret, kein allgemeines HOOD-Pitch."
 }`;
 
 // ─── STATE ───────────────────────────────────────────────────────
@@ -1295,15 +1295,11 @@ function renderResults() {
           <a href="${product.url}" target="_blank" rel="noopener noreferrer" class="product-btn">${esc(product.cta)}</a>
         </div>
 
-        <!-- HOOD klar getrennt nach dem Button -->
+        <!-- Q&A Hinweis statt HOOD Warteliste -->
         <div style="border:2px solid #254b34;border-radius:12px;padding:18px 20px;background:#eaf2ed;">
-          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#254b34;font-weight:700;margin-bottom:8px;">Und wenn du mehr möchtest</div>
-          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#254b34;margin-bottom:10px;">Alma-HOOD — Deine digitale Schreibgemeinschaft</div>
-          <p style="font-size:13px;line-height:1.7;margin-bottom:12px;">${esc(r.hood_pitch || "")}</p>
-          <p style="font-size:13px;line-height:1.7;margin-bottom:12px;"><strong style="color:#254b34;">Hoodies</strong> — Zugang zum digitalen Coworking auf Gather mit care-sensiblen Timern, der Aufzeichnung des aktuellsten Workshops und Wiebkes Selbstlernkurs <em>Deep Work Essentials</em>.</p>
-          <p style="font-size:13px;line-height:1.7;margin-bottom:14px;"><strong style="color:#254b34;">Almas</strong> — Alles der Hoodies plus monatliche Live-Workshops, Big Rocks Treffen, Q&As, eine wachsende Mini-Kurs-Mediathek und eine Signal-Gruppe — mit direktem Zugang zu Wiebke.</p>
-          <p style="font-size:12px;color:#254b34;font-weight:600;margin-bottom:13px;">Ab 1. Juni gibt es wieder freie Plätze — jetzt unverbindlich auf die Warteliste.</p>
-          <a href="https://alma-mater.myflodesk.com/alma-hood-2026" target="_blank" rel="noopener noreferrer" class="product-btn" style="background:#254b34;">Auf die Warteliste →</a>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#254b34;margin-bottom:10px;">Live Q&A · 4. Juni, 9:30–10:30 Uhr</div>
+          <p style="font-size:13px;line-height:1.7;margin-bottom:13px;">${esc(r.hood_pitch || "")}</p>
+          <a href="https://www.schreibcoaching-fuer-mamas.de/bestaetigung-interesse-hood-webinar" target="_blank" rel="noopener noreferrer" class="product-btn" style="background:#254b34;">Zur Live Q&A anmelden →</a>
         </div>
       </div>
 
