@@ -1267,10 +1267,12 @@ function renderResults() {
         <div class="tag">${esc(r.hauptmuster?.name)}</div>
         <p>${esc(r.hauptmuster?.erklaerung)}</p>
       </div>
+
+      ${feeHtml}
       <div class="divider"></div>
 
       <div class="res-section">
-        <div class="res-label">Dein Deep Work</div>
+        <div class="res-label">Deep Work</div>
         <div class="badge ${bereit ? "green" : "gold"}">${bereit ? "✓ Du bist bereit für Deep Work" : "→ Erst Fundament legen"}</div>
         <div class="dw-box">
           <div class="dw-title">Modell: ${esc(dw.modell)}</div>
@@ -1278,27 +1280,24 @@ function renderResults() {
           ${dw.erste_schritte ? `<div class="dw-steps"><strong style="font-size:12px;">Erste Schritte:</strong> ${esc(dw.erste_schritte)}</div>` : ""}
         </div>
       </div>
+
+      <div style="border:2px solid #254b34;border-radius:12px;padding:18px 20px;background:#eaf2ed;margin-bottom:4px;">
+        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#254b34;margin-bottom:10px;">So nutzt du die Alma-HOOD am besten</div>
+        <p style="font-size:13px;line-height:1.7;margin-bottom:0;">${esc(r.hood_pitch || "")}</p>
+      </div>
+
       ${mikHtml}
-      ${feeHtml}
       <div class="divider"></div>
 
       <div class="res-section">
-        <div class="res-label">Deine nächsten Schritte</div>
+        <div class="res-label">Nächste Schritte</div>
         <p style="margin-bottom:14px;">${esc(r.naechster_schritt)}</p>
-
-        <!-- Mini-Kurs als #1 -->
         <p style="font-size:13px;color:#7a7a7a;margin-bottom:10px;font-style:italic;">Alle Alma Mater Mini-Kurse sind als Live-Workshops in der Alma-HOOD entstanden. Hier bekommst du deinen passenden Kurs kostenlos — als Vorgeschmack:</p>
-        <div class="product-box" style="margin-bottom:28px;">
+        <div class="product-box">
           <div style="background:#472c4c;color:white;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:6px 6px 0 0;margin:-18px -20px 14px -20px;font-family:'Montserrat',sans-serif;font-weight:700;">Mein Geschenk an dich</div>
           <div class="pname">${esc(product.name)}</div>
           <p>${esc(product.beschreibung)}</p>
           <a href="${product.url}" target="_blank" rel="noopener noreferrer" class="product-btn">${esc(product.cta)}</a>
-        </div>
-
-        <!-- HOOD Nutzungstipps für Mitglieder -->
-        <div style="border:2px solid #254b34;border-radius:12px;padding:18px 20px;background:#eaf2ed;">
-          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#254b34;margin-bottom:10px;">So nutzt du die Alma-HOOD am besten</div>
-          <p style="font-size:13px;line-height:1.7;margin-bottom:0;">${esc(r.hood_pitch || "")}</p>
         </div>
       </div>
 
