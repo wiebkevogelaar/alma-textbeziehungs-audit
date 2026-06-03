@@ -737,7 +737,7 @@ AUSGABE — NUR dieses JSON, kein Text darum:
   "schreibfee": "2-3 Sätze: aufgreifen + Was würde sich ändern? + Freewriting-Einladung + Alma Mater Mini-Kurs Textbeziehung.",
   "kategorie": "textbeziehung|mental_load|muttertaet|big_rocks|rueckzug|zyklus|ki|collection",
   "naechster_schritt": "2-3 Sätze warum dieses Produkt jetzt der richtige Schritt ist. Nicht generisch — auf ihre konkrete Situation beziehen. Bei KI: ALMA als Custom GPT und Claude Skill erwähnen.",
-  "hood_pitch": "2-3 Sätze: Einladung zur Live Q&A am 4. Juni 9:30-10:30 Uhr mit Wiebke. Bezug auf die Analyse nehmen — was in dieser Session besprochen werden kann. Einladend und konkret, kein allgemeines HOOD-Pitch."
+  "hood_pitch": "3-4 Sätze konkrete Nutzungstipps für die Alma-HOOD — die Person ist bereits Mitglied. Basierend auf dem empfohlenen Deep Work Modell und der Care-Situation: Welcher Timer passt? Welcher Raum? Timer-Empfehlung nach Modell: Aufbau/Erschöpft → Alma-Video (Fliederbusch oder Bibo, keine Entscheidungen nötig, einfach starten). Rhythmisch → Stündlicher Timer in der Teestube (24/7, jederzeit einsteigen) oder Alma-Video. Bimodal → Tages-Timer im Piratinnenraum für strukturierte Schreibtage. Journalistisch → Stündlicher Timer (immer synchron, kein Vorlauf nötig). Bei wenig Kontakt mit anderen: Verabredung in der Signal-Gruppe empfehlen, gemeinsam am großen Tisch in der Bibo mit individuellem Timer. Wichtigster Hinweis wenn passend: X-Taste öffnet alle interaktiven Objekte. KEINE Werbung — konkrete erste Handlung nennen."
 }`;
 
 // ─── STATE ───────────────────────────────────────────────────────
@@ -1295,11 +1295,10 @@ function renderResults() {
           <a href="${product.url}" target="_blank" rel="noopener noreferrer" class="product-btn">${esc(product.cta)}</a>
         </div>
 
-        <!-- Q&A Hinweis statt HOOD Warteliste -->
+        <!-- HOOD Nutzungstipps für Mitglieder -->
         <div style="border:2px solid #254b34;border-radius:12px;padding:18px 20px;background:#eaf2ed;">
-          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#254b34;margin-bottom:10px;">Live Q&A · 4. Juni, 9:30–10:30 Uhr</div>
-          <p style="font-size:13px;line-height:1.7;margin-bottom:13px;">${esc(r.hood_pitch || "")}</p>
-          <a href="https://www.schreibcoaching-fuer-mamas.de/bestaetigung-interesse-hood-webinar" target="_blank" rel="noopener noreferrer" class="product-btn" style="background:#254b34;">Zur Live Q&A anmelden →</a>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#254b34;margin-bottom:10px;">So nutzt du die Alma-HOOD am besten</div>
+          <p style="font-size:13px;line-height:1.7;margin-bottom:0;">${esc(r.hood_pitch || "")}</p>
         </div>
       </div>
 
